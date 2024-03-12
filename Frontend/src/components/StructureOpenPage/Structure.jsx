@@ -5,7 +5,7 @@ export const Structure = ({
   tituloRenderizado,
   descripcionPrincipal,
   btnDescripcion,
-  descripcionPaginas
+  descripcionPaginas,
 }) => {
   return (
     <>
@@ -13,15 +13,16 @@ export const Structure = ({
         <div className="w-[473.83px] h-[600px] top-[253.65px] left-[483.08px] rounded-[24px] border-slate-200 border-[1px] px-[60px]">
           <form action="./LOGIC/bringInfo.php" method="POST">
             <div className="my-[40px]">
-             
-                <img
-                  src="./public/devchallenges.svg"
-                  alt="logo"
-                  className="logoOriginal"
-                />
-           
+              <img
+                src="./public/devchallenges.svg"
+                alt="logo"
+                className="logoOriginal"
+              />
+
               <div className="left-[541.66px] text-[18px] my-[20px]">
-                <h1 className="text-left text-[20px]"><strong>{tituloRenderizado}</strong></h1>
+                <h1 className="text-left text-[20px]">
+                  <strong>{tituloRenderizado}</strong>
+                </h1>
                 <p className="text-[15px]">{descripcionPrincipal}</p>
               </div>
 
@@ -56,10 +57,7 @@ export const Structure = ({
               <div>
                 <button
                   type="submit"
-                  className=" w-[356.48px]
-    h-[38px]
-    top-[532.8px]
-    left-[541.66px] rounded-[8px] bg-blue-500 text-white mt-[25px] border-none text-[16px] hover:bg-sky-500"
+                  className=" w-[356.48px] h-[38px] top-[532.8px] left-[541.66px] rounded-[8px] bg-blue-500 text-white mt-[25px] border-none text-[16px] hover:bg-sky-500"
                 >
                   {btnDescripcion}
                 </button>
@@ -103,7 +101,6 @@ export const Structure = ({
           </p>
           <p>devChallenges.io</p>
         </div>
-      
       </section>
     </>
   );

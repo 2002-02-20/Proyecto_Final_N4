@@ -1,13 +1,24 @@
-import { useState } from 'react'
-import './App.css'
-import { Structure } from './components/StructureOpenPage/Structure'
+import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LayoutAdmin from "./components/BarraNavegacion/LayoutAdmin";
+
+import "./App.css";
+import { Structure } from "./components/StructureOpenPage/Structure";
+import { Perfil } from "./components/Perfil/Perfil";
+import BarraNavegacion from "./components/BarraNavegacion/BarraNavegacion";
+import Sidebar from "./components/BarraNavegacion/SideBar";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
-     {/* <Structure
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LayoutAdmin />} />
+
+
+{/* <Structure
      tituloRenderizado='Login'
      descripcionPrincipal=''
      btnDescripcion='Login'
@@ -20,8 +31,13 @@ function App() {
      descripcionPaginas='Login'
      /> */}
 
+        </Routes>
+      </BrowserRouter>
+      
+      {/* <Perfil/> */}
+      {/* <BarraNavegacion/> */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

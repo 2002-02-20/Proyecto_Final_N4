@@ -29,20 +29,33 @@ class RollController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required']);
-        $roll = Roll::create($request->all());
-        return response()->json(['roll' => $roll]);
+        try {
+            $request->validate(['name' => 'required']);
+            $roll = Roll::create($request->all());
 
+            $bitacora = Roll::add("A new roll was created with the id: {$roll->id}");
+
+
+            if (!$bitacora) {
+                throw new \Exception('Error creating log.');
+            }
+
+
+
+            return response()->json(['roll' => $roll]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
+
 
     /**
      * Display the specified resource.
      */
-    public function show( $id)
+    public function show($id)
     {
         $roll = Roll::findOrFail($id);
         return response()->json($roll);
-
     }
 
     /**
@@ -58,22 +71,20 @@ class RollController extends Controller
      */
     public function update(Request $request,  $id)
     {
-        $request->validate(['name' => 'required' . $id ]);
+        $request->validate(['name' => 'required' . $id]);
 
         $user = Roll::findOrFail($id);
         $user->update($request->all());
         return response()->json($user);
-
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
         $user = Roll::findOrFail($id);
         $user->delete();
         return 'El registro se borro correctamente';
-
     }
 }
