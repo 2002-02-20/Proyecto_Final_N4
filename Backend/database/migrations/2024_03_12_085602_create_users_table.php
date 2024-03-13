@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('second_LastName')->nullable();
             $table->date('birthday')->nullable(); 
             $table->foreignId('roll_id')->nullable()->constrained('rolls');
-            $table->enum('status', ['activo', 'inactivo']);
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }

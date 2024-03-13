@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logs;
 use App\Models\Pages;
 use Illuminate\Http\Request;
 
@@ -27,21 +28,36 @@ class PagesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
-        $request->validate(['URL' => 'required', 'name' => 'required', 'description' => 'required' 
-        ]);
-        $pages = Pages::create($request->all());
-        return response()->json(['pages' => $pages]);
+        try {
+            $request->validate([
+                'URL' => 'required',
+                'name' => 'required',
+                'description' => 'required'
+            ]);
+
+            $pages = Pages::create($request->all());
+
+            $logs = Logs::add("A new page was created with the id: {$pages->id}");
+
+            if (!$logs) {
+                throw new \Exception('Error creating log.');
+            }
+
+            return response()->json(['pages' => $pages]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
+
 
     /**
      * Display the specified resource.
      */
     public function show(Pages $id)
     {
-      
-
     }
 
     /**
@@ -55,19 +71,51 @@ class PagesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pages $pages)
+
+    public function update(Request $request, $id)
     {
-        //
+        try {
+            $request->validate([
+                'URL' => 'required',
+                'name' => 'required',
+                'description' => 'required'
+            ]);
+
+            $page = Pages::findOrFail($id);
+            $page->update($request->all());
+
+            $logs = Logs::add("Page with the id {$page->id} was updated.");
+
+            if (!$logs) {
+                throw new \Exception('Error creating log.');
+            }
+
+            return response()->json($page);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
-    {
-        $pages = Pages::findOrFail($id);
-        $pages->delete();
-        return 'El registro se borro correctamente';
 
+    public function destroy($id)
+    {
+        try {
+            $pages = Pages::findOrFail($id);
+            $pages->delete();
+
+            $logs = Logs::add("Page with the id {$id} was deleted.");
+
+            if (!$logs) {
+                throw new \Exception('Error creating log.');
+            }
+
+            return response()->json(['message' => 'The page was  successfully removed']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 }

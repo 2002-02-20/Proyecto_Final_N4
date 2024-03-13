@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logs;
 use App\Models\Roll;
 use Illuminate\Http\Request;
 
@@ -31,16 +32,14 @@ class RollController extends Controller
     {
         try {
             $request->validate(['name' => 'required']);
+
             $roll = Roll::create($request->all());
 
-            $bitacora = Roll::add("A new roll was created with the id: {$roll->id}");
+            $logs = Logs::add("A new roll was created with the id: {$roll->id}");
 
-
-            if (!$bitacora) {
+            if (!$logs) {
                 throw new \Exception('Error creating log.');
             }
-
-
 
             return response()->json(['roll' => $roll]);
         } catch (\Exception $e) {
@@ -69,22 +68,49 @@ class RollController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,  $id)
-    {
-        $request->validate(['name' => 'required' . $id]);
 
-        $user = Roll::findOrFail($id);
-        $user->update($request->all());
-        return response()->json($user);
+    public function update(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'name' => 'required|unique:rolls,name,' . $id,
+            ]);
+
+            $roll = Roll::findOrFail($id);
+            $roll->update($request->all());
+
+            $logs = Logs::add("A roll with the id {$roll->id} was updated.");
+
+            if (!$logs) {
+                throw new \Exception('Error creating log.');
+            }
+
+            return response()->json($roll);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
+
     public function destroy($id)
     {
-        $user = Roll::findOrFail($id);
-        $user->delete();
-        return 'El registro se borro correctamente';
+        try {
+            $roll = Roll::findOrFail($id);
+            $roll->delete();
+
+            $logs = Logs::add("Roll with the id {$id} was deleted.");
+
+            if (!$logs) {
+                throw new \Exception('Error creating log.');
+            }
+
+            return response()->json(['message' => 'The Roll was deleted successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 }
