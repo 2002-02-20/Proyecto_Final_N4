@@ -5,7 +5,7 @@ export const Perfil = () => {
     <>
       <div className=" w-[600px]">
         <section>
-          <a href="" className="text-sky-500">
+          <a href="/" className="text-sky-500">
             Back
           </a>
           <section className="w-[550px] rounded-[12px] border-gray-200 border-[1px] mt-[10px] px-[40px]">

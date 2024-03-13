@@ -7,6 +7,7 @@ import { Structure } from "./components/StructureOpenPage/Structure";
 import { Perfil } from "./components/Perfil/Perfil";
 import BarraNavegacion from "./components/BarraNavegacion/BarraNavegacion";
 import Sidebar from "./components/BarraNavegacion/SideBar";
+import Info from "./components/Perfil/Info";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -16,8 +17,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LayoutAdmin />} />
+          <Route path="/Info.jsx" element={<Info />} />
+          <Route path="/Perfil.jsx" element={<Perfil />} />
 
-
+      {/* <Info/> */}
 {/* <Structure
      tituloRenderizado='Login'
      descripcionPrincipal=''
