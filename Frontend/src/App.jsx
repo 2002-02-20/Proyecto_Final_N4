@@ -8,6 +8,7 @@ import BarraNavegacion from "./components/BarraNavegacion/BarraNavegacion";
 import Sidebar from "./components/BarraNavegacion/SideBar";
 import Info from "./components/Perfil/Info";
 import { Login } from "./components/StructureOpenPage/Login";
+import Usuarios from "./components/Usuarios/Usuarios";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -21,8 +22,10 @@ function App() {
           <Route path="/Info.jsx" element={<Info />} />
           <Route path="/Perfil.jsx/:id" element={<Perfil />} />
           <Route path="/LayoutAdmin" element={<LayoutAdmin />} />
+      <Route path="/usuarios" element={<Usuarios/>} />
         </Routes>
       </BrowserRouter>
+
 
     </>
   );
