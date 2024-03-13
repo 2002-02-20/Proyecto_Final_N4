@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Icons } from "../Icons/Icons";
 import { useNavigate } from "react-router-dom";
 
-export const Structure = () => {
+export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate(); 
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -16,7 +17,7 @@ export const Structure = () => {
     };
 
     // Solicitud POST al backend
-    fetch("http://127.0.0.1:8000/api/auth/register", {
+    fetch("http://127.0.0.1:8000/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -55,14 +56,8 @@ export const Structure = () => {
 
               <div className="left-[541.66px] text-[18px] my-[20px]">
                 <h1 className="text-left text-[20px]">
-                  <strong>
-                    Join thousands of learners from around the world
-                  </strong>
+                  <strong>Login</strong>
                 </h1>
-                <p className="text-[15px]">
-                  Master web development by marking real-life projects. There
-                  are multiple paths for you to choose
-                </p>
               </div>
 
               <div className="w-[356.48px] h-[48px] top-[399.79px] left-[541.66px] rounded-[8px] border-slate-200 border-[1px] py-[10px] mb-[15px] flex items-center px-[10px]">
@@ -75,9 +70,9 @@ export const Structure = () => {
                   placeholder="Email"
                   required
                   autoComplete="off"
-                  className="w-[90%] h-[100%] px-[10px] focus:outline-none"
                   value={email} // Aquí se enlaza el valor del input con el estado email
                   onChange={(e) => setEmail(e.target.value)} // Aquí se actualiza el estado email cuando el usuario escribe en el input
+                  className="w-[90%] h-[100%] px-[10px] focus:outline-none"
                 />
               </div>
 
@@ -91,9 +86,9 @@ export const Structure = () => {
                   name="password"
                   required
                   autoComplete="off"
-                  className="w-[90%] h-[100%] px-[10px] focus:outline-none"
                   value={password} // Aquí se enlaza el valor del input con el estado password
                   onChange={(e) => setPassword(e.target.value)} // Aquí se actualiza el estado password cuando el usuario escribe en el input
+                  className="w-[90%] h-[100%] px-[10px] focus:outline-none"
                 />
               </div>
 
@@ -102,7 +97,7 @@ export const Structure = () => {
                   type="submit"
                   className=" w-[356.48px] h-[38px] top-[532.8px] left-[541.66px] rounded-[8px] bg-blue-500 text-white mt-[25px] border-none text-[16px] hover:bg-sky-500"
                 >
-                  Start coding Now
+                  Login
                 </button>
               </div>
 
@@ -127,8 +122,8 @@ export const Structure = () => {
                 </div>
                 <div className="text-[14px] font-[400] items-center flex text-gray-500 justify-center">
                   <p>Don’t have an account yet?</p>
-                  <a href="/" className="hover:text-sky-500">
-                    Login
+                  <a href="/Structure.jsx" className="hover:text-sky-500">
+                    Register
                   </a>
                 </div>
               </div>
@@ -148,4 +143,4 @@ export const Structure = () => {
     </>
   );
 };
-export default Structure;
+export default Login;
