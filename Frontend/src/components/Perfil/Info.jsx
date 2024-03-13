@@ -1,74 +1,98 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./info.css";
+import { Link } from "react-router-dom";
 
-export default function Info() {
+export default function Info({data}) {
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const userDataString = localStorage.getItem("InfoUser");
+    if (userDataString) {
+      const userData = JSON.parse(userDataString);
+      setUserData(userData);
+    }
+
+    console.log(data);
+  }, []);
+
   return (
     <>
       <section>
-        <h2 class="personalInfo">Personal info</h2>
-        <p class="basicInfo">Basic info, like your name and photo</p>
+        <h2 className="personalInfo">Personal info</h2>
+        <p className="basicInfo">Basic info, like your name and photo</p>
       </section>
 
       <section>
-        <table>
-          <thead>
-            <th>
-              <div>
-                <h3 class="thProfile">Profile</h3>
-                <p class="thSomeInfo">
-                  Some info may be visible to other people
-                </p>
-              </div>
+      {userData && (
+        <table className="border">
+          
+          <thead className="border">
+            <tr>
+              <th>
+                <div>
+                  <h3 className="thProfile">Profile</h3>
+                  <p className="thSomeInfo">
+                    Some info may be visible to other people
+                  </p>
+                </div>
 
-              <div>
-                <a href="./Perfil.jsx">
-                  <button class="thBtnEdit">Edit</button>
-                </a>
-              </div>
-            </th>
+                <div className="thBtnEdit">
+                  <Link
+                    to={`/Perfil.jsx/${userData.id}`}
+                   
+                  >
+                    Edit
+                  </Link>{" "}
+                  
+                </div>
+              </th>
+            </tr>
           </thead>
 
           <tbody>
-            <td class="tdDatosTable">
-              <div>
-                <h3>NOMBRE</h3>
-              </div>
-              <div>
-                <p></p>
-              </div>
-            </td>
-          </tbody>
-          <tbody>
-            <td class="tdDatosTable">
-              <div>
-                <h3>APELLIDO</h3>
-              </div>
-              <div>
-                <p></p>
-              </div>
-            </td>
-          </tbody>
-          <tbody>
-            <td class="tdDatosTable">
-              <div>
-                <h3>EMAIL</h3>
-              </div>
-              <div>
-                <p></p>
-              </div>
-            </td>
-          </tbody>
-          <tbody>
-            <td class="tdDatosTable">
-              <div>
-                <h3>PASSWORD</h3>
-              </div>
-              <div>
-                <p>******</p>
-              </div>
-            </td>
+            <table>
+              <thead className="">
+               
+                  <tr className="flex  flex-col ">
+                    <th className="justify-between border-b text-gray-400">
+                      USUARIO / CORREO{" "}
+                      <div className="px-[40px] text-black">
+                        {userData.email}
+                      </div>
+                    </th>
+
+                    <th className="justify-between border-b text-gray-400">
+                      NOMBRES{" "}
+                      <div className="px-[40px] text-black">
+                        {userData.names}
+                      </div>
+                    </th>
+                    <th className="justify-between border-b text-gray-400">
+                      APELLIDOS{" "}
+                      <div className="px-[40px]  text-black">
+                        {userData.first_LastName} {userData.second_LastName}
+                      </div>
+                    </th>
+
+                    <th className="justify-between border-b text-gray-400">
+                      FECHA NACIMIENTO{" "}
+                      <div className="px-[40px]  text-black">
+                        {userData.birthday} 
+                      </div>
+                    </th>
+
+
+                    <th className="justify-between border-b text-gray-400">
+                      PASSWORD{" "}
+                      <div className="px-[40px] text-black">*********</div>
+                    </th>
+                  </tr>
+               
+              </thead>
+            </table>
           </tbody>
         </table>
+        )}
       </section>
     </>
   );

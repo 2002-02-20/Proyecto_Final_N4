@@ -57,8 +57,7 @@ table {
     top: 228.06px;
     left: 297.04px;
     border-radius: 12px;
-    border: 1px;
-    border: 1px solid #E0E0E0;
+ 
 }
 
 th {
@@ -94,21 +93,18 @@ th {
 }
 
 .thBtnEdit {
-    width: 95.34px;
-    height: 38px;
-    top: 267.11px;
-    left: 998.77px;
+   padding: 5px 25px;
     border-radius: 12px;
     border: 1px;
-    border: 1px solid #828282;
-    background-color: white;
-    color: #828282;
+    border: 1px solid white;
+    background-color: #7fd7fa;
+    color: white;
 
 }
 
 .thBtnEdit:hover {
     background-color: #F2F2F2;
-    border: 1px solid white;
+    
     color: rgb(139, 139, 139);
     transition: 0.3s;
 }

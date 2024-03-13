@@ -19,9 +19,8 @@ const BarraNavegacion = () => {
       
       {/* Agregamos los botones Lista y Artículos */}
       <div className="flex items-center justify-between gap-8 text-white ">
-        <button className="text-[#6b6f77] font-semibold transition-colors btn hover:text-gray-400">Lista</button>
-        <button className="text-[#6b6f77] font-semibold  transition-colors btn hover:text-gray-400">Artículos</button>
-        <button className="text-[#6b6f77] font-semibold transition-colors btn hover:text-gray-400">Elementos</button>
+        <button className="text-[#6b6f77] font-semibold transition-colors btn hover:text-gray-400">Home</button>
+       
       </div>
       
       
@@ -56,7 +55,7 @@ const BarraNavegacion = () => {
               />
               <div className="flex flex-col text-sm">
                 <div className="flex items-center justify-between gap-4 text-white">
-                  <span>Grupo2</span>{" "}
+                  <span>admin</span>{" "}
                   <span className="text-[8px]">28/02/2024</span>
                 </div>
                 <p className="text-xs text-gray-500">
@@ -77,7 +76,7 @@ const BarraNavegacion = () => {
                   <span className="text-[8px]">28/02/2024</span>
                 </div>
                 <p className="text-xs text-gray-500">
-                  Grupo 2...
+                  admin
                 </p>
               </div>
             </Link>
@@ -116,7 +115,7 @@ const BarraNavegacion = () => {
                 src="https://img.freepik.com/vector-gratis/grupo-personas-sonrientes-felices-mirando-vista-superior-ilustracion-vector-plano-fondo-blanco_1284-78599.jpg"
                 className="object-cover w-6 h-6 rounded-full"
               />
-              <span className="text-[#6b6f77] ">Grupo 2 THE BEST</span>
+              <span className="text-[#6b6f77] ">admin</span>
               <RiArrowDownSLine />
             </MenuButton>
           }
@@ -137,7 +136,7 @@ const BarraNavegacion = () => {
               />
               <div className="flex flex-col text-sm">
                 <span className="text-sm">Grupo 2</span>
-                <span className="text-xs text-gray-500">Grupo2@gmail.com</span>
+                <span className="text-xs text-gray-500">admin@gmail.com</span>
               </div>
             </Link>
           </MenuItem>

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState("");
   const navigate = useNavigate(); 
 
   const handleSubmit = (event) => {
@@ -14,6 +15,7 @@ export const Login = () => {
     const data = {
       email: email,
       password: password,
+      user: user
     };
 
     // Solicitud POST al backend
@@ -32,7 +34,9 @@ export const Login = () => {
       })
       .then((data) => {
         // Manejar la respuesta del backend
-        console.log(data);
+        console.log(data.user);
+        localStorage.setItem("token", data.access_token);
+        localStorage.setItem("InfoUser", JSON.stringify(data.user));
         // Aquí puedes hacer algo con la respuesta, como redirigir al usuario
         navigate("/Info.jsx");
       })

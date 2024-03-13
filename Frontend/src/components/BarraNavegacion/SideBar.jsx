@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom"; // Importa BrowserRouter y Link desde react-router-dom
 // Icons
 import {
-  RiBarChart2Line,
+   RiLayoutGridLine,
   RiEarthLine,
   RiCustomerService2Line,
   RiCalendarTodoLine,
@@ -25,7 +25,7 @@ const Sidebar = () => {
       >
         <div>
           <h1 className="mb-10 text-2xl font-bold text-center text-white">
-            Admin<span className="text-4xl text-[#4791ff]">.</span>
+            Administrador<span className="text-4xl text-[#4791ff]">.</span>
           </h1>
           <ul>
             <li>
@@ -34,7 +34,7 @@ const Sidebar = () => {
                 className="flex items-center gap-4 px-4 py-2 text-white transition-colors rounded-lg hover:bg-secondary-900"
               >
                 <LuLayoutDashboard className="text-[#4791ff]" />
-                Dashboard
+                Roles
               </Link>
             </li>
             <li>
@@ -42,7 +42,7 @@ const Sidebar = () => {
                 to="/compras"
                 className="flex items-center gap-4 px-4 py-2 text-white transition-colors rounded-lg hover:bg-secondary-900"
               >
-                <RiBarChart2Line className="text-[#4791ff]" /> Compras
+                < RiLayoutGridLine className="text-[#4791ff]" /> Usuarios
               </Link>
             </li>
             <li>
@@ -51,7 +51,7 @@ const Sidebar = () => {
                 className="flex items-center justify-between w-full px-4 py-2 text-white transition-colors rounded-lg hover:bg-secondary-900"
               >
                 <span className="flex items-center gap-4">
-                  <RiEarthLine className="text-[#4791ff] " /> Inventario
+                  <RiEarthLine className="text-[#4791ff] " /> Bitacoras
                 </span>
                 <RiArrowRightSLine
                   className={`mt-1 ${
@@ -95,18 +95,10 @@ const Sidebar = () => {
                 to="/tickets"
                 className="flex items-center gap-4 px-4 py-2 text-white transition-colors rounded-lg hover:bg-secondary-900"
               >
-                <RiCustomerService2Line className="text-[#4791ff]" /> Soporte
-                técnico
+                <RiCustomerService2Line className="text-[#4791ff]" /> Páginas
               </Link>
             </li>
-            <li>
-              <Link
-                to="/"
-                className="flex items-center gap-4 px-4 py-2 text-white transition-colors rounded-lg hover:bg-secondary-900"
-              >
-                <RiCalendarTodoLine className="text-[#4791ff]" /> Calendario
-              </Link>
-            </li>
+           
           </ul>
         </div>
         <nav>

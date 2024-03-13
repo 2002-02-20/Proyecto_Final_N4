@@ -19,7 +19,8 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/Structure.jsx" element={<Structure />} />
           <Route path="/Info.jsx" element={<Info />} />
-          <Route path="/Perfil.jsx" element={<Perfil />} />
+          <Route path="/Perfil.jsx/:id" element={<Perfil />} />
+          <Route path="/LayoutAdmin" element={<LayoutAdmin />} />
         </Routes>
       </BrowserRouter>
 

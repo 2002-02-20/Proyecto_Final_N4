@@ -81,10 +81,12 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
+        $user = auth()->user();
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => JWTFactory::getTTL() * 60
+            'expires_in' => JWTFactory::getTTL() * 60,
+            'user'=>$user
         ]);
     }
 

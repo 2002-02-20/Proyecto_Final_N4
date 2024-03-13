@@ -6,6 +6,7 @@ export const Structure = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate(); 
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -33,7 +34,7 @@ export const Structure = () => {
         // Manejar la respuesta del backend
         console.log(data);
         // Aquí puedes hacer algo con la respuesta, como redirigir al usuario
-        navigate("/Info.jsx");
+        navigate("/");
       })
       .catch((error) => {
         console.error("There was an error!", error);
