@@ -5,7 +5,7 @@ export const Perfil = () => {
     <>
       <div className=" w-[600px]">
         <section>
-          <a href="/" className="text-sky-500">
+          <a href="/Info.jsx" className="text-sky-500">
             Back
           </a>
           <section className="w-[550px] rounded-[12px] border-gray-200 border-[1px] mt-[10px] px-[40px]">
@@ -40,8 +40,8 @@ export const Perfil = () => {
                 <div className="w-[400px] h-[45px] rounded-[12px] border-[1px] border-gray-200 mt-[5px] items-center flex ">
                   <input
                     type="text"
-                    id="name"
-                    name="name"
+                    id="names"
+                    name="names"
                     placeholder="Escriba su nombres.."
                     className=" focus:outline-none w-[90%] h-[80%] px-3"
                     autoComplete="off"
@@ -50,15 +50,15 @@ export const Perfil = () => {
                 </div>
               </div>
               <div className="my-[15px]">
-                <label htmlFor="name" className="text-gray-600">
+                <label htmlFor="first_LastName" className="text-gray-600">
                 Primer Apellido
                 </label>
                 <br />
                 <div className="w-[400px] h-[45px] rounded-[12px] border-[1px] border-gray-200 mt-[5px] items-center flex ">
                   <input
                     type="text"
-                    id="name"
-                    name="name"
+                    id="first_LastName"
+                    name="first_LastName"
                     placeholder="Escriba su primer apellido.."
                     className=" focus:outline-none w-[90%] h-[80%] px-3"
                     autoComplete="off"
@@ -67,15 +67,15 @@ export const Perfil = () => {
                 </div>
               </div>
               <div className="my-[15px]">
-                <label htmlFor="name" className="text-gray-600">
+                <label htmlFor="second_LastName	" className="text-gray-600">
                   Segundo Apellido
                 </label>
                 <br />
                 <div className="w-[400px] h-[45px] rounded-[12px] border-[1px] border-gray-200 mt-[5px] items-center flex ">
                   <input
                     type="text"
-                    id="name"
-                    name="name"
+                    id="second_LastName	"
+                    name="second_LastName	"
                     placeholder="Escriba su segundo apellido.."
                     className=" focus:outline-none w-[90%] h-[80%] px-3"
                     autoComplete="off"
@@ -84,15 +84,15 @@ export const Perfil = () => {
                 </div>
               </div>
               <div className="my-[15px]">
-                <label htmlFor="name" className="text-gray-600">
+                <label htmlFor="password" className="text-gray-600">
                   Contraseña
                 </label>
                 <br />
                 <div className="w-[400px] h-[45px] rounded-[12px] border-[1px] border-gray-200 mt-[5px] items-center flex ">
                   <input
                     type="password"
-                    id="name"
-                    name="name"
+                    id="password"
+                    name="password"
                     placeholder="Escriba su contraseña.."
                     className=" focus:outline-none w-[90%] h-[80%] px-3"
                     autoComplete="off"
