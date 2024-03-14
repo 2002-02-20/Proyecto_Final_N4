@@ -31,9 +31,8 @@ export const Structure = () => {
         return response.json();
       })
       .then((data) => {
-        // Manejar la respuesta del backend
-        console.log(data);
-        // Aquí puedes hacer algo con la respuesta, como redirigir al usuario
+   
+        
         navigate("/");
       })
       .catch((error) => {

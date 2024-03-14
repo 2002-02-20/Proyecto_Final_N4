@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Bitacora = () => {
   const [users, setUsers] = useState([]);
@@ -37,6 +38,18 @@ export const Bitacora = () => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentUsers = filteredUsers.slice(indexOfFirstItem, indexOfLastItem);
+
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // No hay un token, redirigir al usuario a la página de inicio de sesión
+      navigate("/");
+    }
+  }, [navigate]);
+
 
   return (
     <div className="container mx-auto  py-8">

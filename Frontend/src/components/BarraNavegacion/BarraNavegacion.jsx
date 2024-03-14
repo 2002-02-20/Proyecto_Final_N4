@@ -29,6 +29,16 @@ const BarraNavegacion = () => {
       }
     }
   }, []);
+
+
+  const handleLogout = () => {
+    // Elimina el token de autenticación del localStorage
+    localStorage.removeItem("token");
+    // Redirige al usuario al inicio de sesión u otra página deseada
+    // Puedes usar navigate aquí si estás usando React Router
+    window.location.href = "/";
+  };
+  
   return (
     <header className="flex justify-between h-[7vh] md:h-[10vh] border-b  p-8 items-center bg-white">
       {/* Agregamos los botones Lista y Artículos */}
@@ -177,10 +187,12 @@ const BarraNavegacion = () => {
           <hr className="my-4 border-gray-500" />
 
           <MenuItem className="p-0 hover:bg-transparent">
-            <Link
-              to="/cerrar-sesion"
-              className="flex items-center flex-1 px-6 py-2 text-gray-300 transition-colors rounded-lg hover:bg-secondary-900 gap-x-4"
+          <Link
+            to="#"
+            onClick={handleLogout} // Llama a la función handleLogout al hacer clic en el enlace
+            className="flex items-center flex-1 px-6 py-2 text-gray-300 transition-colors rounded-lg hover:bg-secondary-900 gap-x-4"
             >
+           
               <RiLogoutCircleRLine /> Cerrar sesión
             </Link>
           </MenuItem>

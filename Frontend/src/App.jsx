@@ -21,7 +21,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/Structure.jsx" element={<Structure />} />
+          <Route path="/Register" element={<Structure />} />
           <Route path="/LayoutAdmin" element={<LayoutAdmin />}>
             <Route path="Info" element={<Info />} />
             <Route path="Perfil/:id" element={<Perfil />} />

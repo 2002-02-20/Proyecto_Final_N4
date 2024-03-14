@@ -1,6 +1,18 @@
 import React from 'react'
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function DashBoard() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // No hay un token, redirigir al usuario a la página de inicio de sesión
+      navigate("/");
+    }
+  }, [navigate]);
+
   return (
     <>
     <div className=" w-[100%] bg-white  text-gray-400   items-center h-[20%]  rounded-[10px] px-8 my-12 ">

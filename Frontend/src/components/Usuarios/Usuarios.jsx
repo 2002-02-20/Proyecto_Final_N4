@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { TablaUsuarios } from "./TablaUsuarios";
+import { useNavigate } from "react-router-dom";
 
 const Usuarios = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -21,6 +22,17 @@ const Usuarios = () => {
       .catch((error) => console.error("Error fetching roles:", error));
   }, []);
  
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // No hay un token, redirigir al usuario a la página de inicio de sesión
+      navigate("/");
+    }
+  }, [navigate]);
+
+
 
   const abrirModal = () => {
     setModalOpen(true);

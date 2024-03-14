@@ -38,7 +38,7 @@ class UsersController extends Controller
 
 
             if (empty($request->password)) {
-                $hashedPassword = Hash::make($request->apellido);
+                $hashedPassword = Hash::make($request->first_LastName);
             } else {
                 $hashedPassword = Hash::make($request->password);
             }
@@ -48,9 +48,9 @@ class UsersController extends Controller
 
             $user = User::create($userData);
 
-            $logs = Logs::add("A new user was created with the id: {$user->id}");
+            $Bitacora = Logs::add("Un usuario fue creado con el id: {$user->id}");
 
-            if (!$logs) {
+            if (!$Bitacora) {
                 throw new \Exception();
             }
 
@@ -58,6 +58,7 @@ class UsersController extends Controller
         } catch (\Exception $e) {
             return response()->json(['message' => 'Error al crear el usuario: ' . $e->getMessage()], 500);
         }
+    
     }
     /**
      * Display the specified resource.

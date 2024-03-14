@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./info.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Info({data}) {
   const [userData, setUserData] = useState(null);
-  console.log(userData)
 
   useEffect(() => {
     const userDataString = localStorage.getItem("InfoUser");
@@ -16,6 +15,17 @@ export default function Info({data}) {
     console.log(data);
   }, []);
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // No hay un token, redirigir al usuario a la página de inicio de sesión
+      navigate("/");
+    }
+  }, [navigate]);
+
+  
   return (
     <>
       <section>

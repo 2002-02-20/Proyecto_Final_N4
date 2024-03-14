@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { TablaRoll } from "./TablaRoll";
+import { useNavigate } from "react-router-dom";
 
 const Roll = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -58,6 +59,17 @@ const Roll = () => {
         console.error("There was an error!", error);
       });
   };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // No hay un token, redirigir al usuario a la página de inicio de sesión
+      navigate("/");
+    }
+  }, [navigate]);
+
 
   return (
     <div className="w-full mx-auto">
