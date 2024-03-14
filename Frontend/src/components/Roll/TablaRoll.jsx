@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from "react";
 
 
-export const TablaUsuarios = () => {
+export const TablaRoll = () => {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const [rolls, setRolls] = useState([]);
+
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/rolls")
-      .then((response) => response.json())
-      .then((dataRoll) => setRolls(dataRoll))
-      .catch((error) => console.error("Error fetching roles:", error));
-  }, []);
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/users")
       .then((response) => response.json())
       .then((data) => setUsers(data))
       .catch((error) => console.error("Error fetching users:", error));
@@ -30,10 +23,6 @@ export const TablaUsuarios = () => {
     setCurrentPage(1);
   };
 
-  const getRollName = (rollId) => {
-    const roll = rolls.find((roll) => roll.id === rollId);
-    return roll ? roll.name : "";
-  };
 
   const filteredUsers = users.filter((user) => {
     return (
@@ -47,7 +36,7 @@ export const TablaUsuarios = () => {
     );
   });
 
-  const itemsPerPage = 5;
+  const itemsPerPage = 6;
   const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -72,25 +61,23 @@ export const TablaUsuarios = () => {
           <thead>
             <tr className="bg-gray-200">
               <td className="px-4 py-2 border">ID</td>
-              <td className="px-4 py-2 border">Email</td>
+              <td className="px-4 py-2 border">Name</td>
               <td className="px-4 py-2 border">Status</td>
-              <td className="px-4 py-2 border">Date</td>
+              <td className="px-4 py-2 border">Created</td>
               <td className="px-4 py-2 border">Update</td>
-              <td className="px-4 py-2 border">Rol</td>
-              <td className="px-4 py-2 border">Change Status</td>
+              
+              <td className="px-4 py-2 border">Delete</td>
             </tr>
           </thead>
           <tbody>
             {currentUsers.map((user) => (
               <tr key={user.id} className="bg-white">
                 <td className="px-4 py-2 border">{user.id}</td>
-                <td className="px-4 py-2 border">{user.email}</td>
-                <td className="px-4 py-2 border">{user.status}</td>
+                <td className="px-4 py-2 border">{user.name}</td>
+                <td className="px-4 py-2 border"></td>
                 <td className="px-4 py-2 border">{user.created_at}</td>
                 <td className="px-4 py-2 border">{user.updated_at}</td>
-                <td className="px-4 py-2 border">
-                  {getRollName(user.roll_id)}
-                </td>
+               
                 <td className="px-4 py-2 border">
                   <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
                     Change

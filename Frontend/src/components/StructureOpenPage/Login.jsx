@@ -6,7 +6,7 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -15,7 +15,7 @@ export const Login = () => {
     const data = {
       email: email,
       password: password,
-      user: user
+      user: user,
     };
 
     // Solicitud POST al backend
@@ -126,22 +126,13 @@ export const Login = () => {
                 </div>
                 <div className="text-[14px] font-[400] items-center flex text-gray-500 justify-center">
                   <p>Don’t have an account yet?</p>
-                  <a href="/Structure.jsx" className="hover:text-sky-500">
+                  <a href="/Register" className="hover:text-sky-500">
                     Register
                   </a>
                 </div>
               </div>
             </div>
           </form>
-        </div>
-        <div className="text-gray-500 text-[14px] flex justify-between mt-[10px] gap-[200px]">
-          <p>
-            created by{" "}
-            <a href="#" className="no-underline hover:text-sky-500">
-              DerekMoscui
-            </a>
-          </p>
-          <p>devChallenges.io</p>
         </div>
       </section>
     </>

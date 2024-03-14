@@ -99,7 +99,7 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $user->update($userData);
 
-        $logs = Logs::add("A user with the id {$user->id} was updated.");
+        $logs = Logs::add("El usuario con el id {$user->id} fue actualizado.");
 
         if (!$logs) {
             throw new \Exception('Error creating log.');
@@ -128,7 +128,7 @@ class UsersController extends Controller
             $user->save();
 
             $statusChange = ($newStatus == 'active') ? 'activated' : 'inactivated';
-            $logs = Logs::add("The user with the id: {$user->id} was $statusChange.");
+            $logs = Logs::add("El usuario con el id: {$user->id} fue $statusChange.");
 
             if (!$logs) {
                 throw new \Exception('Error creating log.');

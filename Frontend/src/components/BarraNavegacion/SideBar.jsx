@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom"; // Importa BrowserRouter y Link desde react-router-dom
 // Icons
 import {
-   RiLayoutGridLine,
+  RiLayoutGridLine,
   RiEarthLine,
   RiCustomerService2Line,
   RiCalendarTodoLine,
@@ -16,6 +16,13 @@ import { LuLayoutDashboard } from "react-icons/lu";
 const Sidebar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showSubmenu, setShowSubmenu] = useState(false);
+  const handleLogout = () => {
+    // Elimina el token de autenticación del localStorage
+    localStorage.removeItem("token");
+    // Redirige al usuario al inicio de sesión u otra página deseada
+    // Puedes usar navigate aquí si estás usando React Router
+    window.location.href = "/";
+  };
   return (
     <>
       <div
@@ -30,7 +37,7 @@ const Sidebar = () => {
           <ul>
             <li>
               <Link
-                to="/dashboard"
+                to="/LayoutAdmin/Roll"
                 className="flex items-center gap-4 px-4 py-2 text-white transition-colors rounded-lg hover:bg-secondary-900"
               >
                 <LuLayoutDashboard className="text-[#4791ff]" />
@@ -42,68 +49,31 @@ const Sidebar = () => {
                 to="/LayoutAdmin/usuarios"
                 className="flex items-center gap-4 px-4 py-2 text-white transition-colors rounded-lg hover:bg-secondary-900"
               >
-                < RiLayoutGridLine className="text-[#4791ff]" /> Usuarios
+                <RiLayoutGridLine className="text-[#4791ff]" /> Usuarios
               </Link>
-            </li>
-            <li>
-              <button
-                onClick={() => setShowSubmenu(!showSubmenu)}
-                className="flex items-center justify-between w-full px-4 py-2 text-white transition-colors rounded-lg hover:bg-secondary-900"
-              >
-                <span className="flex items-center gap-4">
-                  <RiEarthLine className="text-[#4791ff] " /> Bitacoras
-                </span>
-                <RiArrowRightSLine
-                  className={`mt-1 ${
-                    showSubmenu && "rotate-90"
-                  } transition-all`}
-                />
-              </button>
-              <ul
-                className={` ${
-                  showSubmenu ? "h-[130px]" : "h-0"
-                } overflow-y-hidden transition-all`}
-              >
-                <li>
-                  <Link
-                    to="/categorias"
-                    className="py-2 px-4 border-l border-gray-500 ml-6 block relative before:w-3 before:h-3 before:absolute before:bg-[#4791ff] before:rounded-full before:-left-[6.5px] before:top-1/2 before:-translate-y-1/2 before:border-4 before:border-white-100 text-white transition-colors hover:text-gray-500"
-                  >
-                    Categorias
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/inventario"
-                    className="py-2 px-4 border-l border-gray-500 ml-6 block relative before:w-3 before:h-3 before:absolute before:bg-[#4791ff] before:rounded-full before:-left-[6.5px] before:top-1/2 before:-translate-y-1/2 before:border-4 before:border-white-100 text-white transition-colors hover:text-gray-500"
-                  >
-                    Inventario
-                  </Link>
-                </li>
-                 <li>
-                  <Link
-                    to="/Proveedores"
-                    className="py-2 px-4 border-l border-gray-500 ml-6 block relative before:w-3 before:h-3 before:absolute before:bg-[#4791ff] before:rounded-full before:-left-[6.5px] before:top-1/2 before:-translate-y-1/2 before:border-4 before:border-white-100 text-white transition-colors hover:text-gray-500"
-                  >
-                    Proveedores
-                  </Link>
-                </li> 
-              </ul>
             </li>
             <li>
               <Link
-                to="/tickets"
+                to="/LayoutAdmin/bitacora"
                 className="flex items-center gap-4 px-4 py-2 text-white transition-colors rounded-lg hover:bg-secondary-900"
               >
-                <RiCustomerService2Line className="text-[#4791ff]" /> Páginas
+                <RiCustomerService2Line className="text-[#4791ff]" /> Bitacora
               </Link>
             </li>
-           
+            <li>
+              <Link
+                to="/LayoutAdmin/pagina"
+                className="flex items-center gap-4 px-4 py-2 text-white transition-colors rounded-lg hover:bg-secondary-900"
+              >
+                <RiCustomerService2Line className="text-[#4791ff]" /> Paginas
+              </Link>
+            </li>
           </ul>
         </div>
         <nav>
           <Link
-            to="/"
+            to="#"
+            onClick={handleLogout} // Llama a la función handleLogout al hacer clic en el enlace
             className="flex items-center gap-4 px-4 py-2 text-white transition-colors rounded-lg hover:bg-secondary-900"
           >
             <RiLogoutCircleRLine className="text-[#4791ff]" /> Cerrar sesión
@@ -116,10 +86,8 @@ const Sidebar = () => {
       >
         {showMenu ? <RiCloseLine /> : <RiMenu3Line />}
       </button>
-
-      </>
+    </>
   );
 };
 
 export default Sidebar;
-   

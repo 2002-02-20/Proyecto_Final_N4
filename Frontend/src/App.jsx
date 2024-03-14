@@ -9,6 +9,9 @@ import Info from "./components/Perfil/Info";
 import { Login } from "./components/StructureOpenPage/Login";
 import Usuarios from "./components/Usuarios/Usuarios";
 import DashBoard from "./components/Usuarios/DashBoard";
+import Roll from "./components/Roll/Roll";
+import { Bitacora } from "./components/Bitacora/Bitacora";
+import Page from "./components/Page/Page";
 
 function App() {
  
@@ -24,6 +27,9 @@ function App() {
             <Route path="Perfil/:id" element={<Perfil />} />
             <Route path="usuarios" element={<Usuarios />} />
             <Route path="dashboard" element={<DashBoard />} />
+            <Route path="roll" element={<Roll/>} />
+            <Route path="bitacora" element={<Bitacora/>} />
+            <Route path="pagina" element={<Page/>} />
           </Route>
         </Routes>
       </BrowserRouter>

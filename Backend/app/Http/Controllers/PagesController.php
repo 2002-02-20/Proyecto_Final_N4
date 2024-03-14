@@ -40,7 +40,7 @@ class PagesController extends Controller
 
             $pages = Pages::create($request->all());
 
-            $logs = Logs::add("A new page was created with the id: {$pages->id}");
+            $logs = Logs::add("Una nueva página fue creada con el id: {$pages->id}");
 
             if (!$logs) {
                 throw new \Exception('Error creating log.');
@@ -84,7 +84,7 @@ class PagesController extends Controller
             $page = Pages::findOrFail($id);
             $page->update($request->all());
 
-            $logs = Logs::add("Page with the id {$page->id} was updated.");
+            $logs = Logs::add("La página con el id {$page->id} fue actualizada.");
 
             if (!$logs) {
                 throw new \Exception('Error creating log.');
@@ -107,7 +107,7 @@ class PagesController extends Controller
             $pages = Pages::findOrFail($id);
             $pages->delete();
 
-            $logs = Logs::add("Page with the id {$id} was deleted.");
+            $logs = Logs::add("La página con el id {$id} fue borrada.");
 
             if (!$logs) {
                 throw new \Exception('Error creating log.');

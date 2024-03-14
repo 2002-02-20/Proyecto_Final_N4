@@ -35,7 +35,7 @@ class RollController extends Controller
 
             $roll = Roll::create($request->all());
 
-            $logs = Logs::add("A new roll was created with the id: {$roll->id}");
+            $logs = Logs::add("Se creo un nuevo roll con el id: {$roll->id}");
 
             if (!$logs) {
                 throw new \Exception('Error creating log.');
@@ -79,7 +79,7 @@ class RollController extends Controller
             $roll = Roll::findOrFail($id);
             $roll->update($request->all());
 
-            $logs = Logs::add("A roll with the id {$roll->id} was updated.");
+            $logs = Logs::add("Un roll con el id {$roll->id} fue actualizado.");
 
             if (!$logs) {
                 throw new \Exception('Error creating log.');
@@ -102,7 +102,7 @@ class RollController extends Controller
             $roll = Roll::findOrFail($id);
             $roll->delete();
 
-            $logs = Logs::add("Roll with the id {$id} was deleted.");
+            $logs = Logs::add("El rol con el id {$id} fue borrado.");
 
             if (!$logs) {
                 throw new \Exception('Error creating log.');
