@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LayoutAdmin from "./components/BarraNavegacion/LayoutAdmin";
 import "./App.css";
@@ -11,7 +10,7 @@ import { Login } from "./components/StructureOpenPage/Login";
 import Usuarios from "./components/Usuarios/Usuarios";
 
 function App() {
-  const [count, setCount] = useState(0);
+ 
 
   return (
     <>
@@ -19,14 +18,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/Structure.jsx" element={<Structure />} />
-          <Route path="/Info.jsx" element={<Info />} />
-          <Route path="/Perfil.jsx/:id" element={<Perfil />} />
-          <Route path="/LayoutAdmin" element={<LayoutAdmin />} />
-      <Route path="/usuarios" element={<Usuarios/>} />
+          <Route path="/LayoutAdmin" element={<LayoutAdmin />}>
+            <Route path="Info" element={<Info />} />
+            <Route path="Perfil/:id" element={<Perfil />} />
+            <Route path="usuarios" element={<Usuarios />} />
+          </Route>
         </Routes>
       </BrowserRouter>
-
-
     </>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import { TablaUsuarios } from "./TablaUsuarios";
 
 const Usuarios = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -14,7 +15,7 @@ const Usuarios = () => {
 
   return (
     <>
-    <div className="flex justify-between w-[90%] bg-slate-300 items-center h-[70px] px-[35px] rounded-[10px] m-12 absolute">
+    <div className="flex justify-between w-[79%] bg-white text-gray-400 late-300 items-center h-[70px]  rounded-[10px] px-10 my-12 absolute">
       <h2>Informacion de Usuario</h2>
       <button
         onClick={abrirModal}
@@ -139,6 +140,10 @@ const Usuarios = () => {
           </form>
         </div>
       </Modal>
+      <div className="absolute">
+        <TablaUsuarios/>
+        </div>
+     
     </>
   );
 };

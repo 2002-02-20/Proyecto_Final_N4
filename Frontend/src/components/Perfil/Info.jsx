@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Info({data}) {
   const [userData, setUserData] = useState(null);
+  console.log(userData)
 
   useEffect(() => {
     const userDataString = localStorage.getItem("InfoUser");
@@ -37,12 +38,9 @@ export default function Info({data}) {
                 </div>
 
                 <div className="thBtnEdit">
-                  <Link
-                    to={`/Perfil.jsx/${userData.id}`}
-                   
-                  >
-                    Edit
-                  </Link>{" "}
+                  <Link to={`/LayoutAdmin/Perfil/${userData.id}`}>
+                    Editar
+                  </Link>
                   
                 </div>
               </th>

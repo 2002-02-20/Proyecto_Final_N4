@@ -39,7 +39,7 @@ const Sidebar = () => {
             </li>
             <li>
               <Link
-                to="/compras"
+                to="/LayoutAdmin/usuarios"
                 className="flex items-center gap-4 px-4 py-2 text-white transition-colors rounded-lg hover:bg-secondary-900"
               >
                 < RiLayoutGridLine className="text-[#4791ff]" /> Usuarios

@@ -61,7 +61,7 @@ export const Perfil = () => {
         setSecond_LastName("");
         setBirthday("");
 
-        navigate(`/Perfil.jsx/${userData.id}`);
+        navigate(`/LayoutAdmin/Perfil/${userData.id}`);
       })
       .catch((error) => {
         console.error("There was an error!", error);
@@ -78,7 +78,7 @@ export const Perfil = () => {
   return (
     <>
       <div className=" w-[600px] pt-4 m-auto mt-12 relative ">
-        <a href="/Info.jsx" className="text-sky-500 absolute left-9 top-0 ">
+        <a href="/LayoutAdmin/Info" className="text-sky-500 absolute left-9 top-0 ">
           Back
         </a>
         <section className="">
@@ -99,7 +99,7 @@ export const Perfil = () => {
                     id="email"
                     name="email"
                     placeholder="Escriba su correo.."
-                    className="focus:outline-none w-[90%] h-[80%] px-3"
+                    className="focus:outline-none w-[90%] h-[80%] px-3 bg-transparent"
                     autoComplete="off"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -119,7 +119,7 @@ export const Perfil = () => {
                     id="names"
                     name="names"
                     placeholder="Escriba su nombres.."
-                    className=" focus:outline-none w-[90%] h-[80%] px-3"
+                    className=" focus:outline-none w-[90%] h-[80%] px-3 bg-transparent"
                     autoComplete="off"
                     value={names}
                     onChange={(e) => setNames(e.target.value)}
@@ -138,7 +138,7 @@ export const Perfil = () => {
                     id="first_LastName"
                     name="first_LastName"
                     placeholder="Escriba su primer apellido.."
-                    className=" focus:outline-none w-[90%] h-[80%] px-3"
+                    className=" focus:outline-none w-[90%] h-[80%] px-3 bg-transparent"
                     autoComplete="off"
                     value={first_LastName}
                     onChange={(e) => setFirst_LastName(e.target.value)}
@@ -157,7 +157,7 @@ export const Perfil = () => {
                     id="second_LastName	"
                     name="second_LastName	"
                     placeholder="Escriba su segundo apellido.."
-                    className=" focus:outline-none w-[90%] h-[80%] px-3"
+                    className=" focus:outline-none w-[90%] h-[80%] px-3 bg-transparent"
                     autoComplete="off"
                     value={second_LastName}
                     onChange={(e) => setSecond_LastName(e.target.value)}
@@ -177,7 +177,7 @@ export const Perfil = () => {
                     id="birthday"
                     name="birthday"
                     placeholder="Escriba su fecha de nacimiento.."
-                    className=" focus:outline-none w-[90%] h-[80%] px-3 text-gray-400"
+                    className=" focus:outline-none w-[90%] h-[80%] px-3 bg-transparent"
                     autoComplete="off"
                     value={birthday}
                     onChange={(e) => setBirthday(e.target.value)}
@@ -198,7 +198,7 @@ export const Perfil = () => {
                     id="password"
                     name="password"
                     placeholder="Escriba su contraseña.."
-                    className=" focus:outline-none w-[90%] h-[80%] px-3"
+                    className=" focus:outline-none w-[90%] h-[80%] px-3 bg-transparent"
                     autoComplete="off"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
