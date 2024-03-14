@@ -8,6 +8,7 @@ import Sidebar from "./components/BarraNavegacion/SideBar";
 import Info from "./components/Perfil/Info";
 import { Login } from "./components/StructureOpenPage/Login";
 import Usuarios from "./components/Usuarios/Usuarios";
+import DashBoard from "./components/Usuarios/DashBoard";
 
 function App() {
  
@@ -22,6 +23,7 @@ function App() {
             <Route path="Info" element={<Info />} />
             <Route path="Perfil/:id" element={<Perfil />} />
             <Route path="usuarios" element={<Usuarios />} />
+            <Route path="dashboard" element={<DashBoard />} />
           </Route>
         </Routes>
       </BrowserRouter>

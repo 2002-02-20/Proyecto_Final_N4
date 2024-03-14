@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { TablaUsuarios } from "./TablaUsuarios";
 
 const Usuarios = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -15,32 +14,32 @@ const Usuarios = () => {
 
   return (
     <>
-    <div className="flex justify-between w-[79%] bg-white text-gray-400 late-300 items-center h-[70px]  rounded-[10px] px-10 my-12 absolute">
-      <h2>Informacion de Usuario</h2>
-      <button
-        onClick={abrirModal}
-        className="bg-blue-500 hover:bg-blue-700 text-white  py-2 px-4 rounded"
-      >
-        Agregar Nuevo Usuario
-      </button>
+      <div className="flex justify-between w-[79%] bg-white text-gray-400 late-300 items-center h-[70px]  rounded-[10px] px-10 my-12 absolute">
+        <h2>Informacion de Usuario</h2>
+        <button
+          onClick={abrirModal}
+          className="bg-blue-500 hover:bg-blue-700 text-white  py-2 px-4 rounded"
+        >
+          Agregar Nuevo Usuario
+        </button>
       </div>
       <Modal
         isOpen={modalOpen}
         onRequestClose={cerrarModal}
-        className="Modal"
-        overlayClassName="Overlay"
+        className="ModalContent"
+        overlayClassName="ModalOverlay bg-black bg-opacity-50 backdrop-blur-lg fixed inset-0"
         shouldCloseOnOverlayClick={true}
       >
         <div className="w-[410px]  p-[30px] rounded absolute top-[110px] left-[480px] z-40">
-            <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between">
             <h1 className="text-[25px]">Agregar Usuario</h1>
             <button
               onClick={cerrarModal}
               className="bg-gray-100 hover:bg-gray-300  rounded p-[10px]"
             >
-             x
+              x
             </button>
-            </div>
+          </div>
           <form>
             <div className="my-4">
               <label htmlFor="email" className="text-gray-600">
@@ -124,7 +123,12 @@ const Usuarios = () => {
                 className="focus:outline-none w-full h-10 px-3 border rounded-lg border-gray-300"
               />
             </div>
-            <p className="py-[15px]">La contraseña por defecto de cada usuario sera su <strong>primer apellido</strong>, indicar que debe efectuar un cambio de constraseña individualmente en el apartado de <strong>Editar</strong> en <strong>My Profile</strong></p>
+            <p className="py-[15px]">
+              La contraseña por defecto de cada usuario sera su{" "}
+              <strong>primer apellido</strong>, indicar que debe efectuar un
+              cambio de constraseña individualmente en el apartado de{" "}
+              <strong>Editar</strong> en <strong>My Profile</strong>
+            </p>
             <button
               onClick={cerrarModal}
               className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded mr-4"
@@ -140,10 +144,6 @@ const Usuarios = () => {
           </form>
         </div>
       </Modal>
-      <div className="absolute">
-        <TablaUsuarios/>
-        </div>
-     
     </>
   );
 };

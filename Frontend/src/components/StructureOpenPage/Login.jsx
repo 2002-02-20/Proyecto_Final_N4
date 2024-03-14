@@ -38,7 +38,7 @@ export const Login = () => {
         localStorage.setItem("token", data.access_token);
         localStorage.setItem("InfoUser", JSON.stringify(data.user));
         // Aquí puedes hacer algo con la respuesta, como redirigir al usuario
-        navigate("/LayoutAdmin/Info");
+        navigate("/LayoutAdmin/DashBoard");
       })
       .catch((error) => {
         console.error("There was an error!", error);

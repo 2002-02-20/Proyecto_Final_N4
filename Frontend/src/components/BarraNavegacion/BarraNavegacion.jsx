@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import {
   RiNotification3Line,
   RiArrowDownSLine,
@@ -13,17 +14,30 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 import { Link } from "react-router-dom";
 
 const BarraNavegacion = () => {
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const userDataString = localStorage.getItem("InfoUser");
+    if (userDataString) {
+      const userData = JSON.parse(userDataString);
+      if (typeof userData === "object" && !Array.isArray(userData)) {
+        // Convertir el objeto userData en un array
+        setUserData([userData]);
+      } else {
+        // Si userData ya es un array, simplemente establecerlo
+        setUserData(userData);
+      }
+    }
+  }, []);
   return (
     <header className="flex justify-between h-[7vh] md:h-[10vh] border-b  p-8 items-center bg-white">
-
-      
       {/* Agregamos los botones Lista y Artículos */}
       <div className="flex items-center justify-between gap-8 text-white ">
-        <button className="text-[#6b6f77] font-semibold transition-colors btn hover:text-gray-400">Home</button>
-       
+        <button className="text-[#6b6f77] font-semibold transition-colors btn hover:text-gray-400">
+          Home
+        </button>
       </div>
-      
-      
+
       <nav className="flex items-center gap-2">
         <Menu
           menuButton={
@@ -55,8 +69,7 @@ const BarraNavegacion = () => {
               />
               <div className="flex flex-col text-sm">
                 <div className="flex items-center justify-between gap-4 text-white">
-                  <span>admin</span>{" "}
-                  <span className="text-[8px]">28/02/2024</span>
+                  <span>11</span> <span className="text-[8px]">28/02/2024</span>
                 </div>
                 <p className="text-xs text-gray-500">
                   Lorem ipsum dolor sit amet...
@@ -75,9 +88,7 @@ const BarraNavegacion = () => {
                   <span>Nuevo like</span>{" "}
                   <span className="text-[8px]">28/02/2024</span>
                 </div>
-                <p className="text-xs text-gray-500">
-                  admin
-                </p>
+                <p className="text-xs text-gray-500">admin</p>
               </div>
             </Link>
           </MenuItem>
@@ -92,9 +103,7 @@ const BarraNavegacion = () => {
                   <span>Nuevo comentario</span>{" "}
                   <span className="text-[8px]">28/02/2024</span>
                 </div>
-                <p className="text-xs text-gray-500">
-                  Grupo 2...
-                </p>
+                <p className="text-xs text-gray-500">Grupo 2...</p>
               </div>
             </Link>
           </MenuItem>
@@ -115,7 +124,21 @@ const BarraNavegacion = () => {
                 src="https://img.freepik.com/vector-gratis/grupo-personas-sonrientes-felices-mirando-vista-superior-ilustracion-vector-plano-fondo-blanco_1284-78599.jpg"
                 className="object-cover w-6 h-6 rounded-full"
               />
-              <span className="text-[#6b6f77] ">admin</span>
+              <span className="text-[#6b6f77] ">
+                {userData && (
+                  <div>
+                    {userData.map((user, index) => (
+                      <div key={index}>
+                        {user.names ? (
+                          <p className="text-md">{user.names}</p>
+                        ) : (
+                          <p className="text-md">{user.email}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </span>
               <RiArrowDownSLine />
             </MenuButton>
           }
@@ -127,28 +150,32 @@ const BarraNavegacion = () => {
         >
           <MenuItem className="p-0 hover:bg-transparent">
             <Link
-              to="/perfil"
+              to="/LayoutAdmin/Info"
               className="flex items-center flex-1 px-6 py-2 text-gray-300 transition-colors rounded-lg hover:bg-secondary-900 gap-x-4"
             >
-              <img
-                src="https://img.freepik.com/vector-gratis/grupo-personas-sonrientes-felices-mirando-vista-superior-ilustracion-vector-plano-fondo-blanco_1284-78599.jpg"
-                className="object-cover w-8 h-8 rounded-full"
-              />
+              
+
               <div className="flex flex-col text-sm">
-                <span className="text-sm">Grupo 2</span>
-                <span className="text-xs text-gray-500">admin@gmail.com</span>
+                <span className="text-xs text-gray-500">
+                {userData && (
+                  <div>
+                    {userData.map((user, index) => (
+                      <div key={index}>
+                        {user.names ? (
+                          <p className="text-lg">{user.names}</p>
+                        ) : (
+                          <p className="text-lg">{user.email}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+                </span>
               </div>
             </Link>
           </MenuItem>
           <hr className="my-4 border-gray-500" />
-          <MenuItem className="p-0 hover:bg-transparent">
-            <Link
-              to="/configuracion"
-              className="flex items-center flex-1 px-6 py-2 text-gray-300 transition-colors rounded-lg hover:bg-secondary-900 gap-x-4"
-            >
-              <RiSettings3Line /> Configuración
-            </Link>
-          </MenuItem>
+
           <MenuItem className="p-0 hover:bg-transparent">
             <Link
               to="/cerrar-sesion"
@@ -159,7 +186,6 @@ const BarraNavegacion = () => {
           </MenuItem>
         </Menu>
       </nav>
-      
     </header>
   );
 };
