@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import {
   RiNotification3Line,
   RiArrowDownSLine,
-  RiSettings3Line,
   RiLogoutCircleRLine,
   RiThumbUpLine,
   RiChat3Line,
@@ -13,7 +12,7 @@ import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import { Link } from "react-router-dom";
 
-const BarraNavegacion = () => {
+const Navbar = () => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -21,10 +20,8 @@ const BarraNavegacion = () => {
     if (userDataString) {
       const userData = JSON.parse(userDataString);
       if (typeof userData === "object" && !Array.isArray(userData)) {
-        // Convertir el objeto userData en un array
         setUserData([userData]);
       } else {
-        // Si userData ya es un array, simplemente establecerlo
         setUserData(userData);
       }
     }
@@ -32,10 +29,7 @@ const BarraNavegacion = () => {
 
 
   const handleLogout = () => {
-    // Elimina el token de autenticación del localStorage
     localStorage.removeItem("token");
-    // Redirige al usuario al inicio de sesión u otra página deseada
-    // Puedes usar navigate aquí si estás usando React Router
     window.location.href = "/";
   };
   
@@ -74,7 +68,7 @@ const BarraNavegacion = () => {
               className="flex items-center flex-1 gap-4 px-4 py-2 text-gray-300 transition-colors rounded-lg hover:bg-secondary-900"
             >
               <img
-                src="https://img.freepik.com/vector-gratis/grupo-personas-sonrientes-felices-mirando-vista-superior-ilustracion-vector-plano-fondo-blanco_1284-78599.jpg"
+                src="https://www.petlife.mx/u/fotografias/m/2023/5/16/f768x1-2048_2175_5050.jpg"
                 className="object-cover w-8 h-8 rounded-full"
               />
               <div className="flex flex-col text-sm">
@@ -113,7 +107,7 @@ const BarraNavegacion = () => {
                   <span>Nuevo comentario</span>{" "}
                   <span className="text-[8px]">28/02/2024</span>
                 </div>
-                <p className="text-xs text-gray-500">Grupo 2...</p>
+                <p className="text-xs text-gray-500">El mejor comentario</p>
               </div>
             </Link>
           </MenuItem>
@@ -131,7 +125,7 @@ const BarraNavegacion = () => {
           menuButton={
             <MenuButton className="flex items-center p-2 transition-colors rounded-lg gap-x-2 hover:bg-red-100">
               <img
-                src="https://img.freepik.com/vector-gratis/grupo-personas-sonrientes-felices-mirando-vista-superior-ilustracion-vector-plano-fondo-blanco_1284-78599.jpg"
+                src="https://www.petlife.mx/u/fotografias/m/2023/5/16/f768x1-2048_2175_5050.jpg"
                 className="object-cover w-6 h-6 rounded-full"
               />
               <span className="text-[#6b6f77] ">
@@ -160,7 +154,7 @@ const BarraNavegacion = () => {
         >
           <MenuItem className="p-0 hover:bg-transparent">
             <Link
-              to="/LayoutAdmin/Info"
+              to="/LayoutAdmin/Informacion-Personal"
               className="flex items-center flex-1 px-6 py-2 text-gray-300 transition-colors rounded-lg hover:bg-secondary-900 gap-x-4"
             >
               
@@ -202,4 +196,4 @@ const BarraNavegacion = () => {
   );
 };
 
-export default BarraNavegacion;
+export default Navbar;

@@ -1,27 +1,21 @@
 import React, { useState, useEffect } from "react";
 
-export const TablaUsuarios = () => {
+
+export const TablaRoll = () => {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const [rolls, setRolls] = useState([]);
+
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/rolls")
-      .then((response) => response.json())
-      .then((dataRoll) => setRolls(dataRoll))
-      .catch((error) => console.error("Error fetching roles:", error));
-  }, []);
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/users")
       .then((response) => response.json())
       .then((data) => setUsers(data))
       .catch((error) => console.error("Error fetching users:", error));
   }, []);
 
   const handleStatusChange = (id, newStatus) => {
-    fetch(`http://127.0.0.1:8000/api/users/${id}/status`, {
+    fetch(`http://127.0.0.1:8000/api/rolls/${id}/status`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -38,6 +32,8 @@ export const TablaUsuarios = () => {
       .catch((error) => console.error("Error:", error));
   };
 
+
+
   const handleChangePage = (page) => {
     setCurrentPage(page);
   };
@@ -47,16 +43,11 @@ export const TablaUsuarios = () => {
     setCurrentPage(1);
   };
 
-  const getRollName = (rollId) => {
-    const roll = rolls.find((roll) => roll.id === rollId);
-    return roll ? roll.name : "";
-  };
-
-  const formatDateTime = (dateTimeString) => {
+  const formatoFecha = (dateTimeString) => {
     const dateTime = new Date(dateTimeString);
     return dateTime.toLocaleString();
   };
-
+  
   const filteredUsers = users.filter((user) => {
     return (
       (user.email &&
@@ -69,46 +60,45 @@ export const TablaUsuarios = () => {
     );
   });
 
-  const itemsPerPage = 5;
+  const itemsPerPage = 6;
   const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentUsers = filteredUsers.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
-    <div className="mx-auto py-8">
+    <div className="container mx-auto py-8">
   <div className="mb-4 flex items-center justify-between">
     <input
       type="text"
       placeholder="Buscar..."
       value={searchTerm}
       onChange={handleSearch}
-      className="p-2 border border-gray-300 rounded-md w-64 focus:outline-none"
+      className="p-2 border border-gray-300 rounded-md w-64"
     />
     <p className="text-gray-600">
       Page {currentPage} of {totalPages}
     </p>
   </div>
   <div className="overflow-x-auto">
-    <table className="w-full border border-gray-300 text-center">
+    <table className="w-full bg-white border border-gray-200 text-center">
       <thead>
         <tr className="bg-gray-200">
           <th className="px-4 py-2 border-b">ID</th>
-          <th className="px-4 py-2 border-b">Email</th>
+          <th className="px-4 py-2 border-b">Nombre</th>
           <th className="px-4 py-2 border-b">Status</th>
-          <th className="px-4 py-2 border-b">Fecha</th>
+          <th className="px-4 py-2 border-b">Creado</th>
           <th className="px-4 py-2 border-b">Actualización</th>
-          <th className="px-4 py-2 border-b">Rol</th>
-          <th className="px-4 py-2 border-b">Cambiar Status</th>
+          <th className="px-4 py-2 border-b">Ajustes</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody >
         {currentUsers.map((user) => (
           <tr key={user.id} className="bg-white">
             <td className="px-4 py-2 border-b">{user.id}</td>
-            <td className="px-4 py-2 border-b">{user.email}</td>
+            <td className="px-4 py-2 border-b">{user.name}</td>
             <td className="px-4 py-2 border-b">
-            <div
+              <div
                 className={`px-2 py-1 rounded-full flex justify-center ${
                   user.status === "active" ? "bg-green-500" : "bg-red-500"
                 } text-white`}
@@ -116,12 +106,16 @@ export const TablaUsuarios = () => {
                 {user.status}
               </div>
             </td>
-            <td className="px-4 py-2 border-b">{formatDateTime(user.created_at)}</td>
-            <td className="px-4 py-2 border-b">{formatDateTime(user.updated_at)}</td>
-            <td className="px-4 py-2 border-b">{getRollName(user.roll_id)}</td>
+            <td className="px-4 py-2 border-b">{formatoFecha(user.created_at)}</td>
+            <td className="px-4 py-2 border-b">{formatoFecha(user.updated_at)}</td>
             <td className="px-4 py-2 border-b">
               <button
-                onClick={() => handleStatusChange(user.id, user.status === "active" ? "inactive" : "active")}
+                onClick={() =>
+                  handleStatusChange(
+                    user.id,
+                    user.status === "active" ? "inactive" : "active"
+                  )
+                }
                 className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
               >
                 Cambiar Status
@@ -136,19 +130,22 @@ export const TablaUsuarios = () => {
     <button
       onClick={() => handleChangePage(currentPage - 1)}
       disabled={currentPage === 1}
-      className={`px-4 py-2 rounded ${currentPage === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-gray-200 hover:bg-gray-300"}`}
+      className={`px-4 py-2 rounded ${
+        currentPage === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-gray-200 hover:bg-gray-300"
+      }`}
     >
       Previous
     </button>
     <button
       onClick={() => handleChangePage(currentPage + 1)}
       disabled={currentPage === totalPages}
-      className={`ml-4 px-4 py-2 rounded ${currentPage === totalPages ? "bg-gray-300 cursor-not-allowed" : "bg-gray-200 hover:bg-gray-300"}`}
+      className={`ml-4 px-4 py-2 rounded ${
+        currentPage === totalPages ? "bg-gray-300 cursor-not-allowed" : "bg-gray-200 hover:bg-gray-300"
+      }`}
     >
       Next
     </button>
   </div>
 </div>
-
   );
 };

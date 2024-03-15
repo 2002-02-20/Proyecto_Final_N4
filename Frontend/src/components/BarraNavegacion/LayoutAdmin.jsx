@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "./SideBar";
-import BarraNavegacion from "./BarraNavegacion";
+import BarraNavegacion from "./Navbar";
 
 const LayoutAdmin = () => {
 

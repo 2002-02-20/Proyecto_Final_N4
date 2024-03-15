@@ -3,22 +3,15 @@ import { BrowserRouter as Router, Link } from "react-router-dom"; // Importa Bro
 // Icons
 import {
   RiCustomerService2Line,
-  RiMenu3Line,
-  RiCloseLine,
-  RiMapPin4Fill,
   RiGuideFill,
   RiStackOverflowLine,
   RiMapPin3Line,
-  RiLogoutCircleRLine
 } from "react-icons/ri";
 import { LuLayoutDashboard } from "react-icons/lu";
 
 const Sidebar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const [showSubmenu, setShowSubmenu] = useState(false);
 
- 
-  
   return (
     <>
       <div
@@ -28,12 +21,12 @@ const Sidebar = () => {
       >
         <div>
           <h1 className="mb-10 text-2xl font-bold text-center text-white">
-            Administrador<span className="text-4xl text-gray-300">.</span>
+            Administrador
           </h1>
           <ul>
             <li>
               <Link
-                to="/LayoutAdmin/Roll"
+                to="/LayoutAdmin/administrar-roles"
                 className="flex items-center gap-4 px-4 py-2 text-white transition-colors rounded-lg hover:bg-secondary-900"
               >
                 <RiMapPin3Line className="text-gray-300" />
@@ -66,14 +59,7 @@ const Sidebar = () => {
             </li>
           </ul>
         </div>
-       
       </div>
-      <button
-        onClick={() => setShowMenu(!showMenu)}
-        className="fixed z-50 p-3 text-black rounded-full xl:hidden bottom-4 right-4 bg-[#4791ff]"
-      >
-        {showMenu ? <RiCloseLine /> : <RiMenu3Line />}
-      </button>
     </>
   );
 };

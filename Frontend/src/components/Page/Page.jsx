@@ -10,7 +10,6 @@ const Page = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
-  const [rolls, setRolls] = useState([]);
 
   useEffect(() => {
     Modal.setAppElement("#root");
@@ -88,7 +87,7 @@ const Page = () => {
         }}
         shouldCloseOnOverlayClick={true}
       >
-        <div className="w-[410px] h-[50%] bg-gray-100 py-[10px] rounded absolute top-[90px] left-[620px] z-40 border border-gray-400  border-box">
+        <div className="w-[410px] h-[50%] bg-gray-100 py-[10px] rounded-[10px] absolute top-[90px] left-[620px] z-40 border border-gray-400  border-box">
           <div className="flex items-center justify-between py-2 border-b border-b-gray-400 p-6">
             <h1 className="text-[20px] text-gray-400">Agregar Página</h1>
             <button
@@ -145,13 +144,13 @@ const Page = () => {
               onClick={cerrarModal}
               className="bg-gray-300 hover:bg-white text-gray-800 font-semibold py-2 px-4 rounded mr-4"
             >
-              Close
+              Cerrar
             </button>
             <button
               type="submit"
               className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
             >
-              Save
+              Guardar
             </button>
             </div>
           </form>

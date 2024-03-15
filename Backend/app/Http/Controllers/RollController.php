@@ -31,22 +31,26 @@ class RollController extends Controller
     public function store(Request $request)
     {
         try {
-            $request->validate(['name' => 'required']);
-
+            $request->validate([
+                'name' => 'required'
+            ], [
+                'name.required' => 'El nombre es obligatorio.'
+            ]);
+    
             $roll = Roll::create($request->all());
-
-            $logs = Logs::add("Se creo un nuevo roll con el id: {$roll->id}");
-
+    
+            $logs = Logs::add("Se creó un nuevo rol con el id: {$roll->id}");
+    
             if (!$logs) {
-                throw new \Exception('Error creating log.');
+                throw new \Exception('Error al crear el registro en la bitácora.');
             }
-
+    
             return response()->json(['roll' => $roll]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-
+    
 
     /**
      * Display the specified resource.
@@ -69,29 +73,32 @@ class RollController extends Controller
      * Update the specified resource in storage.
      */
 
-    public function update(Request $request, $id)
-    {
-        try {
-            $request->validate([
-                'name' => 'required|unique:rolls,name,' . $id,
-            ]);
-
-            $roll = Roll::findOrFail($id);
-            $roll->update($request->all());
-
-            $logs = Logs::add("Un roll con el id {$roll->id} fue actualizado.");
-
-            if (!$logs) {
-                throw new \Exception('Error creating log.');
-            }
-
-            return response()->json($roll);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
-    }
-
-    public function softDelete(Request $request, $id)
+     public function update(Request $request, $id)
+     {
+         try {
+             $request->validate([
+                 'name' => 'required|unique:rolls,name,' . $id,
+             ], [
+                 'name.required' => 'El nombre es obligatorio.',
+                 'name.unique' => 'El nombre ya está en uso.',
+             ]);
+     
+             $roll = Roll::findOrFail($id);
+             $roll->update($request->all());
+     
+             $logs = Logs::add("Un rol con el id {$roll->id} fue actualizado.");
+     
+             if (!$logs) {
+                 throw new \Exception('Error al crear el registro en la bitácora.');
+             }
+     
+             return response()->json($roll);
+         } catch (\Exception $e) {
+             return response()->json(['error' => $e->getMessage()], 500);
+         }
+     }
+     
+    public function allEvent(Request $request, $id)
     {
         try {
             $request->validate([

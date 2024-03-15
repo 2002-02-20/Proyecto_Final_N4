@@ -27,7 +27,6 @@ const Usuarios = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      // No hay un token, redirigir al usuario a la página de inicio de sesión
       navigate("/");
     }
   }, [navigate]);
@@ -101,7 +100,7 @@ const Usuarios = () => {
         }}
         shouldCloseOnOverlayClick={true}
       >
-        <div className="w-[410px] h-[90%] bg-gray-100 py-[10px] rounded absolute top-[30px] left-[620px] z-40 border border-gray-400  border-box ">
+        <div className="w-[410px] h-[90%] bg-gray-100 py-[10px] rounded-[10px] absolute top-[30px] left-[620px] z-40 border border-gray-400  border-box ">
           <div className="flex items-center justify-between py-2 border-b border-b-gray-400 p-6">
             <h1 className="text-[20px] text-gray-400">Agregar Usuario</h1>
             <button

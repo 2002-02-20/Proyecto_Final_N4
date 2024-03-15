@@ -2,86 +2,82 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const Bitacora = () => {
-  const [users, setUsers] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [registros, setRegistros] = useState([]);
+  const [paginaActual, setPaginaActual] = useState(1);
+  const [terminoBusqueda, setTerminoBusqueda] = useState("");
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/bitacora")
       .then((response) => response.json())
-      .then((data) => setUsers(data))
-      .catch((error) => console.error("Error fetching users:", error));
+      .then((data) => setRegistros(data))
+      .catch((error) => console.error("Error al obtener registros:", error));
   }, []);
 
-  const handleChangePage = (page) => {
-    setCurrentPage(page);
+  const cambiarPagina = (pagina) => {
+    setPaginaActual(pagina);
   };
 
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-    setCurrentPage(1);
+  const buscarRegistro = (event) => {
+    setTerminoBusqueda(event.target.value);
+    setPaginaActual(1);
   };
 
-  const filteredUsers = users.filter((user) => {
+  const registrosFiltrados = registros.filter((registro) => {
     return (
-      (user.id && user.id.toString().includes(searchTerm)) ||
-      (user.description &&
-        user.description.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (user.date &&
-        user.date.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (user.hour && user.hour.includes(searchTerm))
+      (registro.id && registro.id.toString().includes(terminoBusqueda)) ||
+      (registro.description &&
+        registro.description.toLowerCase().includes(terminoBusqueda.toLowerCase())) ||
+      (registro.fecha && registro.date.toLowerCase().includes(terminoBusqueda.toLowerCase())) ||
+      (registro.hora && registro.hour.includes(terminoBusqueda))
     );
   });
 
-  const itemsPerPage = 9;
-  const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentUsers = filteredUsers.slice(indexOfFirstItem, indexOfLastItem);
-
+  const registrosPorPagina = 9;
+  const totalPaginas = Math.ceil(registrosFiltrados.length / registrosPorPagina);
+  const indiceUltimoRegistro = paginaActual * registrosPorPagina;
+  const indicePrimerRegistro = indiceUltimoRegistro - registrosPorPagina;
+  const registrosActuales = registrosFiltrados.slice(indicePrimerRegistro, indiceUltimoRegistro);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      // No hay un token, redirigir al usuario a la página de inicio de sesión
       navigate("/");
     }
-  }, [navigate]);
-
+  }, [navigate]);
 
   return (
-    <div className="container mx-auto  py-8">
+    <div className="container mx-auto py-8">
       <div className="mb-4 flex items-center justify-between">
         <input
           type="text"
           placeholder="Buscar..."
-          value={searchTerm}
-          onChange={handleSearch}
-          className="p-2 border border-gray-300 rounded-md w-64"
+          value={terminoBusqueda}
+          onChange={buscarRegistro}
+          className="p-2 border border-gray-300 rounded-md w-64 focus:outline-none"
         />
         <p className="text-gray-600">
-          Page {currentPage} of {totalPages}
+          Página {paginaActual} de {totalPaginas}
         </p>
       </div>
       <div className="overflow-x-auto">
-        <table className="table-auto  w-full border-collapse">
+        <table className="w-full border border-gray-300 text-center">
           <thead>
             <tr className="bg-gray-200">
-              <td className="px-4 py-2 ">ID</td>
-              <td className="px-4 py-2 ">Descripción</td>
-              <td className="px-4 py-2 ">Fecha</td>
-              <td className="px-4 py-2 ">Hora</td>
+              <th className="px-4 py-2 border-b">ID</th>
+              <th className="px-4 py-2 border-b">Descripción</th>
+              <th className="px-4 py-2 border-b">Fecha</th>
+              <th className="px-4 py-2 border-b">Hora</th>
             </tr>
           </thead>
           <tbody>
-            {currentUsers.map((user) => (
-              <tr key={user.id} className="bg-white">
-                <td className="px-4 py-2 border-b">{user.id}</td>
-                <td className="px-4 py-2 border-b">{user.description}</td>
-                <td className="px-4 py-2 border-b">{user.date}</td>
-                <td className="px-4 py-2 border-b">{user.hour}</td>
+            {registrosActuales.map((registro) => (
+              <tr key={registro.id} className="bg-white">
+                <td className="px-4 py-2 border-b">{registro.id}</td>
+                <td className="px-4 py-2 border-b">{registro.description}</td>
+                <td className="px-4 py-2 border-b">{registro.date}</td>
+                <td className="px-4 py-2 border-b">{registro.hour}</td>
               </tr>
             ))}
           </tbody>
@@ -89,26 +85,22 @@ export const Bitacora = () => {
       </div>
       <div className="flex justify-end mt-4">
         <button
-          onClick={() => handleChangePage(currentPage - 1)}
-          disabled={currentPage === 1}
-          className={`  px-4 py-2 rounded ${
-            currentPage === 1
-              ? "bg-gray-300 cursor-not-allowed"
-              : "bg-gray-200 hover:bg-gray-300"
+          onClick={() => cambiarPagina(paginaActual - 1)}
+          disabled={paginaActual === 1}
+          className={`px-4 py-2 rounded ${
+            paginaActual === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-gray-200 hover:bg-gray-300"
           }`}
         >
-          Previous
+          Anterior
         </button>
         <button
-          onClick={() => handleChangePage(currentPage + 1)}
-          disabled={currentPage === totalPages}
+          onClick={() => cambiarPagina(paginaActual + 1)}
+          disabled={paginaActual === totalPaginas}
           className={`ml-4 px-4 py-2 rounded ${
-            currentPage === totalPages
-              ? "bg-gray-300 cursor-not-allowed"
-              : "bg-gray-200 hover:bg-gray-300"
+            paginaActual === totalPaginas ? "bg-gray-300 cursor-not-allowed" : "bg-gray-200 hover:bg-gray-300"
           }`}
         >
-          Next
+          Siguiente
         </button>
       </div>
     </div>

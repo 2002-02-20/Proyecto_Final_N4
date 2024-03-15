@@ -1,15 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LayoutAdmin from "./components/BarraNavegacion/LayoutAdmin";
 import "./App.css";
-import { Structure } from "./components/StructureOpenPage/Structure";
-import { Perfil } from "./components/Perfil/Perfil";
-import BarraNavegacion from "./components/BarraNavegacion/BarraNavegacion";
-import Sidebar from "./components/BarraNavegacion/SideBar";
-import Info from "./components/Perfil/Info";
-import { Login } from "./components/StructureOpenPage/Login";
+import { Registrar } from "./components/ParaIniciar/Registrar";
+import { CambiarInfo } from "./components/Perfil/CambarInfo";
+import Informacion from "./components/Perfil/Informacion";
+import { Login } from "./components/ParaIniciar/Login";
 import Usuarios from "./components/Usuarios/Usuarios";
 import DashBoard from "./components/Usuarios/DashBoard";
-import Roll from "./components/Roll/Roll";
+import Roll from "./components/Rol/Roll";
 import { Bitacora } from "./components/Bitacora/Bitacora";
 import Page from "./components/Page/Page";
 
@@ -22,15 +20,15 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
 
-          <Route path="/Register" element={<Structure />} />
+          <Route path="/Register" element={<Registrar />} />
 
 
           <Route path="/LayoutAdmin" element={<LayoutAdmin />}>
-            <Route path="Info" element={<Info />} />
-            <Route path="Perfil/:id" element={<Perfil />} />
+            <Route path="Informacion-Personal" element={<Informacion />} />
+            <Route path="Cambiar-Informacion/:id" element={<CambiarInfo />} />
             <Route path="usuarios" element={<Usuarios />} />
             <Route path="dashboard" element={<DashBoard />} />
-            <Route path="roll" element={<Roll/>} />
+            <Route path="administrar-roles" element={<Roll/>} />
             <Route path="bitacora" element={<Bitacora/>} />
             <Route path="pagina" element={<Page/>} />
           </Route>
