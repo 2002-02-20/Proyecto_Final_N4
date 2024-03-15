@@ -80,9 +80,6 @@ const Usuarios = () => {
   return (
     <div className="w-full mx-auto">
 
-
-
-
       <div className="flex justify-between w-[79%] bg-gray-200 text-white late-300 items-center h-[70px]  rounded-[10px] px-10 my-12 absolute top-12 ">
         <h2 className="text-black">Informacion de Usuario</h2>
         <button
@@ -96,22 +93,27 @@ const Usuarios = () => {
         isOpen={modalOpen}
         onRequestClose={cerrarModal}
         className="Modal"
-        overlayClassName="Overlay"
+        style={{
+          content: {},
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+          },
+        }}
         shouldCloseOnOverlayClick={true}
       >
-        <div className="w-[410px] h-[600px] bg-gray-400 py-[10px] px-[20px] rounded absolute top-0 left-[480px] z-40">
-          <div className="flex items-center justify-between">
-            <h1 className="">Agregar Usuario</h1>
+        <div className="w-[410px] h-[90%] bg-gray-100 py-[10px] rounded absolute top-[30px] left-[620px] z-40 border border-gray-400  border-box ">
+          <div className="flex items-center justify-between py-2 border-b border-b-gray-400 p-6">
+            <h1 className="text-[20px] text-gray-400">Agregar Usuario</h1>
             <button
               onClick={cerrarModal}
-              className="bg-gray-100 hover:bg-gray-300  rounded p-[7px]"
+              className="p-[7px] hover:bg-white rounded flex items-center"
             >
-              x
+             <span class="material-symbols-outlined">close</span>
             </button>
           </div>
           <form onSubmit={handleSubmit}>
-            <div className="my-2">
-              <label htmlFor="email" className="text-gray-600">
+            <div className="my-2 px-6">
+              <label htmlFor="email" className="text-gray-500">
                 Email
               </label>
               <br />
@@ -125,9 +127,9 @@ const Usuarios = () => {
               />
             </div>
 
-            <div className="my-2">
-              <label htmlFor="names" className="text-gray-600">
-                Names
+            <div className="my-2 px-6">
+              <label htmlFor="names" className="text-gray-500">
+                Nombres
               </label>
               <br />
               <input
@@ -140,9 +142,9 @@ const Usuarios = () => {
               />
             </div>
 
-            <div className="my-2">
-              <label htmlFor="first_LastName" className="text-gray-600">
-                First Name
+            <div className="my-2 px-6">
+              <label htmlFor="first_LastName" className="text-gray-500">
+                Primer Apellido
               </label>
               <br />
               <input
@@ -155,9 +157,9 @@ const Usuarios = () => {
               />
             </div>
 
-            <div className="my-2">
-              <label htmlFor="second_LastName" className="text-gray-600">
-                Second Surname
+            <div className="my-2 px-6">
+              <label htmlFor="second_LastName" className="text-gray-500">
+              Segundo Apellido
               </label>
               <br />
               <input
@@ -170,9 +172,9 @@ const Usuarios = () => {
               />
             </div>
 
-            <div className="my-2">
-              <label htmlFor="birthday" className="text-gray-600">
-                date of birth
+            <div className="my-2 px-6">
+              <label htmlFor="birthday" className="text-gray-500">
+                Fecha de Nacimiento
               </label>
               <br />
               <input
@@ -183,9 +185,9 @@ const Usuarios = () => {
                 onChange={(e) => setBirthday(e.target.value)}
               />
             </div>
-            <div className="my-2">
-              <label htmlFor="rollId" className="text-gray-600">
-                Roll
+            <div className="my-2 px-6">
+              <label htmlFor="rollId" className="text-gray-500">
+                Rol
               </label>
               <br />
               <select
@@ -195,7 +197,7 @@ const Usuarios = () => {
                 className="focus:outline-none w-full h-10 px-3 border rounded-lg border-gray-300"
                 onChange={(e) => setRollId(e.target.value)}
               >
-                <option value="">Select a roll</option>
+                <option value="">Seleccionar Rol</option>
                 {rolls.map((roll) => (
                   <option key={roll.id} value={roll.id}>
                     {roll.name}
@@ -204,24 +206,27 @@ const Usuarios = () => {
               </select>
             </div>
 
-            <p className="py-[8px]">
+            <p className="my-2 px-8 py- text-gray-500">
               La contraseña por defecto de cada usuario será su{" "}
               <strong>primer apellido</strong>, indicar que debe efectuar un
               cambio de contraseña individualmente en el apartado de{" "}
               <strong>Editar</strong> en <strong>My Profile</strong>
             </p>
+            <div className="text-right px-10 py-4">
+
             <button
               onClick={cerrarModal}
               className="bg-gray-300 hover:bg-white text-gray-800 font-semibold py-2 px-4 rounded mr-4"
             >
-              Close
+              Cerrar
             </button>
             <button
               type="submit"
               className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
             >
-              Save
+              Guardar
             </button>
+            </div>
           </form>
         </div>
       </Modal>

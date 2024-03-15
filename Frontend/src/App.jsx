@@ -21,7 +21,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
+
           <Route path="/Register" element={<Structure />} />
+
+
           <Route path="/LayoutAdmin" element={<LayoutAdmin />}>
             <Route path="Info" element={<Info />} />
             <Route path="Perfil/:id" element={<Perfil />} />
@@ -31,7 +34,9 @@ function App() {
             <Route path="bitacora" element={<Bitacora/>} />
             <Route path="pagina" element={<Page/>} />
           </Route>
+
         </Routes>
+        
       </BrowserRouter>
     </>
   );

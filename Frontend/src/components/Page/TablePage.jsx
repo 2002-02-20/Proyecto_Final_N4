@@ -20,7 +20,10 @@ export const TablaPage = () => {
     setSearchTerm(event.target.value);
     setCurrentPage(1);
   };
-
+  const formatDateTime = (dateTimeString) => {
+    const dateTime = new Date(dateTimeString);
+    return dateTime.toLocaleString();
+  };
   const filteredUsers = users.filter((user) => {
     return (
       (user.URL && user.URL.toLowerCase().includes(searchTerm.toLowerCase())) ||
@@ -58,26 +61,26 @@ export const TablaPage = () => {
         <table className="table-auto  w-full border-collapse">
           <thead>
             <tr className="bg-gray-200">
-              <td className="px-4 py-2 border">ID</td>
-              <td className="px-4 py-2 border">URL</td>
-              <td className="px-4 py-2 border">Name</td>
-              <td className="px-4 py-2 border">Description</td>
-              <td className="px-4 py-2 border">Created</td>
-              <td className="px-4 py-2 border">Update</td>
-              <td className="px-4 py-2 border">Accions</td>
+              <td className="px-4 py-2 ">ID</td>
+              <td className="px-4 py-2 ">URL</td>
+              <td className="px-4 py-2 ">Nombre</td>
+              <td className="px-4 py-2 ">Descripción</td>
+              <td className="px-4 py-2 ">Creación</td>
+              <td className="px-4 py-2 ">Actualización</td>
+              <td className="px-4 py-2 ">Acciones</td>
             </tr>
           </thead>
           <tbody>
             {currentUsers.map((user) => (
               <tr key={user.id} className="bg-white">
-                <td className="px-4 py-2 border">{user.id}</td>
-                <td className="px-4 py-2 border">{user.URL}</td>
-                <td className="px-4 py-2 border">{user.name}</td>
-                <td className="px-4 py-2 border">{user.description}</td>
-                <td className="px-4 py-2 border">{user.created_at}</td>
-                <td className="px-4 py-2 border">{user.updated_at}</td>
+                <td className="px-4 py-2 border-b">{user.id}</td>
+                <td className="px-4 py-2 border-b">{user.URL}</td>
+                <td className="px-4 py-2 border-b">{user.name}</td>
+                <td className="px-4 py-2 border-b">{user.description}</td>
+                <td className="px-4 py-2 border-b">{formatDateTime(user.created_at)}</td>
+                <td className="px-4 py-2 border-b">{formatDateTime(user.updated_at)}</td>
 
-                <td className="px-4 py-2 border">
+                <td className="px-4 py-2 border-b">
                   <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
                     Delete
                   </button>

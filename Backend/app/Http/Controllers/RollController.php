@@ -91,7 +91,31 @@ class RollController extends Controller
         }
     }
 
+    public function softDelete(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'status' => 'required|in:active,inactive'
+            ]);
 
+            $newStatus = $request->input('status');
+
+            $roll = Roll::findOrFail($id);
+            $roll->status = $newStatus;
+            $roll->save();
+
+            $statusChange = ($newStatus == 'active') ? 'activated' : 'inactivated';
+            $logs = Logs::add("El Roll con id: {$roll->id} fue $statusChange.");
+
+            if (!$logs) {
+                throw new \Exception('Error creating log.');
+            }
+
+            return response()->json(['message' => 'Roll status changed successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
     /**
      * Remove the specified resource from storage.
      */

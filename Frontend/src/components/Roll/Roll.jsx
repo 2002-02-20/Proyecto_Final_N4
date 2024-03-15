@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 const Roll = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  
+
   const [name, setName] = useState("");
-  
-  const [rolls, setRolls] = useState([]); 
+
+  const [rolls, setRolls] = useState([]);
 
   useEffect(() => {
     Modal.setAppElement("#root");
@@ -18,7 +18,6 @@ const Roll = () => {
       .then((dataRoll) => setRolls(dataRoll))
       .catch((error) => console.error("Error fetching roles:", error));
   }, []);
- 
 
   const abrirModal = () => {
     setModalOpen(true);
@@ -32,9 +31,7 @@ const Roll = () => {
     event.preventDefault();
 
     const data = {
-      
       name: name,
-      
     };
 
     fetch("http://127.0.0.1:8000/api/rolls", {
@@ -68,8 +65,7 @@ const Roll = () => {
       // No hay un token, redirigir al usuario a la página de inicio de sesión
       navigate("/");
     }
-  }, [navigate]);
-
+  }, [navigate]);
 
   return (
     <div className="w-full mx-auto">
@@ -86,25 +82,26 @@ const Roll = () => {
         isOpen={modalOpen}
         onRequestClose={cerrarModal}
         className="Modal"
-        overlayClassName="Overlay"
+        style={{
+          content: {},
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+          },
+        }}
         shouldCloseOnOverlayClick={true}
       >
-        <div className="w-[410px] h-[40%] bg-gray-300 py-[10px] px-[20px] rounded absolute top-[90px] left-[580px] z-40">
-          <div className="flex items-center justify-between">
-            <h1 className="">Agregar Roll</h1>
-            <button
-              onClick={cerrarModal}
-              className="bg-gray-100 hover:bg-gray-300  rounded p-[7px]"
-            >
-              x
+        <div className="w-[410px] h-[40%] bg-gray-100 py-[10px] rounded absolute top-[90px] left-[620px] z-40 border border-gray-400  border-box ">
+          <div className="flex items-center justify-between py-2 border-b border-b-gray-400 p-6 ">
+            <h1 className="text-[20px] text-gray-400">Agregar Roll</h1>
+            <button onClick={cerrarModal} className=" p-[7px] hover:bg-white rounded flex items-center">
+              <span class="material-symbols-outlined">close</span>
             </button>
           </div>
+          <br />
           <form onSubmit={handleSubmit}>
-            
-
-            <div className="my-2">
-              <label htmlFor="name" className="text-gray-600">
-              Nombre del nuevo Roll
+            <div className="my-2 px-6">
+              <label htmlFor="name" className="text-[20px] text-gray-400 ">
+                Nombre del nuevo Roll
               </label>
               <br />
               <input
@@ -112,15 +109,14 @@ const Roll = () => {
                 id="name"
                 name="name"
                 placeholder="Escribe el Roll"
-                className="focus:outline-none w-full h-10 px-3 border rounded-lg border-gray-300"
+                className="focus:outline-none w-full h-10 px-3 border rounded-lg border-gray-300 my-4"
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-
-
+            <div className="text-right px-10">
             <button
               onClick={cerrarModal}
-              className="bg-gray-100 hover:bg-white text-gray-800 font-semibold py-2 px-4 rounded mr-4"
+              className="bg-gray-300 hover:bg-white text-gray-800 font-semibold py-2 px-4 rounded mr-4"
             >
               Close
             </button>
@@ -130,6 +126,7 @@ const Roll = () => {
             >
               Save
             </button>
+            </div>
           </form>
         </div>
       </Modal>

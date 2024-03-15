@@ -80,23 +80,28 @@ const Page = () => {
         isOpen={modalOpen}
         onRequestClose={cerrarModal}
         className="Modal"
-        overlayClassName="Overlay"
+        style={{
+          content: {},
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+          },
+        }}
         shouldCloseOnOverlayClick={true}
       >
-        <div className="w-[410px] h-[375px] bg-gray-400 py-[10px] px-[20px] rounded absolute top-0 left-[480px] z-40">
-          <div className="flex items-center justify-between">
-            <h1 className="text-gray-100">Add Page</h1>
+        <div className="w-[410px] h-[50%] bg-gray-100 py-[10px] rounded absolute top-[90px] left-[620px] z-40 border border-gray-400  border-box">
+          <div className="flex items-center justify-between py-2 border-b border-b-gray-400 p-6">
+            <h1 className="text-[20px] text-gray-400">Agregar Página</h1>
             <button
               onClick={cerrarModal}
-              className="bg-gray-100 hover:bg-gray-300  rounded p-[7px]"
+              className="p-[7px] hover:bg-white rounded flex items-center"
             >
-              x
+             <span class="material-symbols-outlined">close</span>
             </button>
           </div>
           <form onSubmit={handleSubmit}>
-            <div className="my-2">
+            <div className=" my-4 mx-6">
               <label htmlFor="URL" className="text-gray-600">
-                URL to the new Page
+               URL
               </label>
               <br />
               <input
@@ -108,9 +113,9 @@ const Page = () => {
               />
             </div>
 
-            <div className="my-2">
+            <div className="my-4 mx-6">
               <label htmlFor="name" className="text-gray-600">
-                Name
+                Nombre
               </label>
               <br />
               <input
@@ -122,9 +127,9 @@ const Page = () => {
               />
             </div>
 
-            <div className="my-6">
+            <div className="my-4 mx-6">
               <label htmlFor="description" className="text-gray-600">
-                Description
+                Descripción
               </label>
               <br />
               <input
@@ -135,7 +140,7 @@ const Page = () => {
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
-
+            <div className="text-right px-10">
             <button
               onClick={cerrarModal}
               className="bg-gray-300 hover:bg-white text-gray-800 font-semibold py-2 px-4 rounded mr-4"
@@ -148,6 +153,7 @@ const Page = () => {
             >
               Save
             </button>
+            </div>
           </form>
         </div>
       </Modal>

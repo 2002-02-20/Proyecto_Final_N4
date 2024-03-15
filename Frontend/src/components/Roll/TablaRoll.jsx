@@ -14,6 +14,26 @@ export const TablaRoll = () => {
       .catch((error) => console.error("Error fetching users:", error));
   }, []);
 
+  const handleStatusChange = (id, newStatus) => {
+    fetch(`http://127.0.0.1:8000/api/rolls/${id}/status`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status: newStatus }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          window.location.reload();
+        } else {
+          throw new Error("Error changing roll status");
+        }
+      })
+      .catch((error) => console.error("Error:", error));
+  };
+
+
+
   const handleChangePage = (page) => {
     setCurrentPage(page);
   };
@@ -23,7 +43,11 @@ export const TablaRoll = () => {
     setCurrentPage(1);
   };
 
-
+  const formatDateTime = (dateTimeString) => {
+    const dateTime = new Date(dateTimeString);
+    return dateTime.toLocaleString();
+  };
+  
   const filteredUsers = users.filter((user) => {
     return (
       (user.email &&
@@ -60,26 +84,39 @@ export const TablaRoll = () => {
         <table className="table-auto  w-full border-collapse">
           <thead>
             <tr className="bg-gray-200">
-              <td className="px-4 py-2 border">ID</td>
-              <td className="px-4 py-2 border">Name</td>
-              <td className="px-4 py-2 border">Status</td>
-              <td className="px-4 py-2 border">Created</td>
-              <td className="px-4 py-2 border">Update</td>
+              <td className="px-4 py-2 ">ID</td>
+              <td className="px-4 py-2 ">Nombre</td>
+              <td className="px-4 py-2 ">Status</td>
+              <td className="px-4 py-2 ">Creado</td>
+              <td className="px-4 py-2 ">Acciones</td>
               
-              <td className="px-4 py-2 border">Delete</td>
+              <td className="px-4 py-2 ">Ajustes</td>
             </tr>
           </thead>
           <tbody>
             {currentUsers.map((user) => (
               <tr key={user.id} className="bg-white">
-                <td className="px-4 py-2 border">{user.id}</td>
-                <td className="px-4 py-2 border">{user.name}</td>
-                <td className="px-4 py-2 border"></td>
-                <td className="px-4 py-2 border">{user.created_at}</td>
-                <td className="px-4 py-2 border">{user.updated_at}</td>
+                <td className="px-4 py-2 border-b">{user.id}</td>
+                <td className="px-4 py-2 border-b">{user.name}</td>
+                <td className="border-b">
+                  <div
+                    className={`px-1 py-1 rounded-[10px] flex
+                    justify-center  ${
+                      user.status === "active" ? "bg-green-300" : "bg-red-300"
+                    }`}
+                  >
+                    {user.status}
+                  </div>
+                  </td>
+                <td className="px-4 py-2 border-b">{formatDateTime(user.created_at)}</td>
+                <td className="px-4 py-2 border-b">{formatDateTime(user.updated_at)}</td>
                
-                <td className="px-4 py-2 border">
-                  <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+                <td className="px-4 py-2 border-b">
+                  
+                <button
+                    onClick={() => handleStatusChange(user.id, user.status === "active" ? "inactive" : "active")}
+                    className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded ml-2"
+                  >
                     Change
                   </button>
                 </td>

@@ -18,17 +18,11 @@ const Sidebar = () => {
   const [showSubmenu, setShowSubmenu] = useState(false);
 
  
-  /* const handleLogout = () => {
-    // Elimina el token de autenticación del localStorage
-    localStorage.removeItem("token");
-    // Redirige al usuario al inicio de sesión u otra página deseada
-    // Puedes usar navigate aquí si estás usando React Router
-    window.location.href = "/";
-  }; */
+  
   return (
     <>
       <div
-        className={`xl:h-[100vh] overflow-y-scroll fixed xl:static w-[80%] md:w-[40%] lg:w-[30%] xl:w-auto h-full top-0 bg-gray-500 p-4 flex flex-col justify-between z-50 ${
+        className={`xl:h-[100vh]  fixed xl:static w-[80%] md:w-[40%] lg:w-[30%] xl:w-auto h-full top-0 bg-gray-500 p-4 flex flex-col justify-between z-50 ${
           showMenu ? "left-0" : "-left-full"
         } transition-all`}
       >
@@ -72,15 +66,7 @@ const Sidebar = () => {
             </li>
           </ul>
         </div>
-        {/* <nav>
-          <Link
-            to="#"
-            onClick={handleLogout} // Llama a la función handleLogout al hacer clic en el enlace
-            className="flex items-center gap-4 px-4 py-2 text-white transition-colors rounded-lg hover:bg-secondary-900"
-          >
-            <RiLogoutCircleRLine className="text-gray-300" /> Cerrar sesión
-          </Link>
-        </nav> */}
+       
       </div>
       <button
         onClick={() => setShowMenu(!showMenu)}

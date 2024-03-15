@@ -28,6 +28,9 @@ Route::put('users/{id}/status', [UsersController::class, 'softDelete']);
 Route::resource('rolls', RollController::class);
 Route::resource('pages', PagesController::class);
 Route::resource('bitacora', LogsController::class);
+Route::put('pages/{id}/status', [PagesController::class, 'softDelete']);
+Route::put('rolls/{id}/status', [RollController::class, 'softDelete']);
+
 
 Route::group([
     'middleware' => 'api',

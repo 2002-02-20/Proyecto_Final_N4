@@ -69,19 +69,19 @@ export const Bitacora = () => {
         <table className="table-auto  w-full border-collapse">
           <thead>
             <tr className="bg-gray-200">
-              <td className="px-4 py-2 border">ID</td>
-              <td className="px-4 py-2 border">Description</td>
-              <td className="px-4 py-2 border">Date</td>
-              <td className="px-4 py-2 border">Hour</td>
+              <td className="px-4 py-2 ">ID</td>
+              <td className="px-4 py-2 ">Descripción</td>
+              <td className="px-4 py-2 ">Fecha</td>
+              <td className="px-4 py-2 ">Hora</td>
             </tr>
           </thead>
           <tbody>
             {currentUsers.map((user) => (
               <tr key={user.id} className="bg-white">
-                <td className="px-4 py-2 border">{user.id}</td>
-                <td className="px-4 py-2 border">{user.description}</td>
-                <td className="px-4 py-2 border">{user.date}</td>
-                <td className="px-4 py-2 border">{user.hour}</td>
+                <td className="px-4 py-2 border-b">{user.id}</td>
+                <td className="px-4 py-2 border-b">{user.description}</td>
+                <td className="px-4 py-2 border-b">{user.date}</td>
+                <td className="px-4 py-2 border-b">{user.hour}</td>
               </tr>
             ))}
           </tbody>

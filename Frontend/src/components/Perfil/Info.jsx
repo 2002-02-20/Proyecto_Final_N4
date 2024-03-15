@@ -28,26 +28,26 @@ export default function Info({data}) {
   
   return (
     <>
-      <section>
-        <h2 className="personalInfo">Personal info</h2>
-        <p className="basicInfo">Basic info, like your name and photo</p>
-      </section>
+      <section className="flex flex-col items-center">
+        <h2 className="text-[36px]">Personal info</h2>
+        <p className="text-left mb-[18px]">Basic info, like your name and photo</p>
+      
 
       <section>
       {userData && (
-        <table className="border">
+        <table className="w-[850px] ">
           
           <thead className="border">
-            <tr>
-              <th>
-                <div>
-                  <h3 className="thProfile">Profile</h3>
-                  <p className="thSomeInfo">
+            <tr className="">
+              <th className="flex item-center">
+                <div className="flex justify-between flex-col ">
+                  <h3 className="text-black text-left">Profile</h3>
+                  <p className="text-left text-[13px] text-gray-400">
                     Some info may be visible to other people
                   </p>
                 </div>
 
-                <div className="thBtnEdit">
+                <div className="rounded-[12px] bg-slate-300 px-[20px] py-[5px] hover:bg-slate-200">
                   <Link to={`/LayoutAdmin/Perfil/${userData.id}`}>
                     Editar
                   </Link>
@@ -101,6 +101,7 @@ export default function Info({data}) {
           </tbody>
         </table>
         )}
+      </section>
       </section>
     </>
   );
